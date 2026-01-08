@@ -1,6 +1,6 @@
 import argparse
 import sys
-from src.problem import generate_small_instance, generate_medium_instance, generate_large_instance
+from src.problem import generate_all_small_instances, generate_all_medium_instances, generate_all_large_instances
 from src.algorithms import tabu_search, simulated_annealing, multi_start_solver
 
 def main():
@@ -19,26 +19,39 @@ def main():
     parser.add_argument('--restarts', type=int, default=5, help="Número de reinicios para Multi-Arranque (Default: 5).")
     parser.add_argument('--iter', type=int, default=100, help="Iteraciones máximas por arranque (Default: 100).")
     
-    # NUEVO ARGUMENTO: Cantidad de instancias a ejecutar
-    parser.add_argument('--instance_count', type=int, default=1, help="Cuántas instancias distintas resolver secuencialmente (Default: 1).")
-    
     args = parser.parse_args()
+    
+    # ---------------------------------------------------------
+    # 2. GENERACIÓN DE LA LISTA DE INSTANCIAS (FUERA DEL BUCLE)
+    # ---------------------------------------------------------
+    # <--- CAMBIO: Generamos TODAS las instancias antes de empezar
 
-    print(f"--- INICIANDO LOTE DE {args.instance_count} EXPERIMENTOS ({args.size.upper()} - {args.algo.upper()}) ---")
+    instances_to_run = []
+
+    if args.size == 'small':
+        instances_to_run = generate_all_small_instances()
+        print(f"-> Generadas {len(instances_to_run)} instancias SMALL (exhaustivo).")
+
+    elif args.size == 'medium':
+        instances_to_run = generate_all_medium_instances()
+        print(f"-> Generadas {len(instances_to_run)} instancias MEDIUM (exhaustivo).")
+
+    elif args.size == 'large':
+        instances_to_run = generate_all_large_instances()
+        print(f"-> Generadas {len(instances_to_run)} instancias LARGE (exhaustivo).")
+
+    total_instances = len(instances_to_run)
+    print(f"--- INICIANDO LOTE DE {total_instances} EXPERIMENTOS ({args.size.upper()} - {args.algo.upper()}) ---")
+
+    # ---------------------------------------------------------
     # --- BUCLE PRINCIPAL (Se repite 'instance_count' veces) ---
-    for i in range(1, args.instance_count + 1):
+    for i, instance in enumerate(instances_to_run, 1):
         
-        print(f"\n>>> EJECUCIÓN {i} DE {args.instance_count} <<<")
+        print(f"\n>>> EJECUCIÓN {i} DE {total_instances} <<<")
+        # Mostramos el nombre generado en problem.py (si lo pusiste) o datos genéricos
+        inst_name = getattr(instance, 'name', 'Sin Nombre')
+        print(f"Instancia: {inst_name} | Tareas: {len(instance.tasks)}, Grúas: {len(instance.cranes)}")
 
-        # 2. Selección del Generador de Instancia (Se genera una NUEVA en cada vuelta)
-        if args.size == 'small':
-            instance = generate_small_instance()
-        elif args.size == 'medium':
-            instance = generate_medium_instance()
-        elif args.size == 'large':
-            instance = generate_large_instance()
-        
-        print(f"Instancia generada: {len(instance.tasks)} tareas, {len(instance.cranes)} grúas.")
 
         # 3. Selección del Algoritmo
         if args.algo == 'tabu':

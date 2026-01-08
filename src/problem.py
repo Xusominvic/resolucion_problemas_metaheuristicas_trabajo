@@ -52,36 +52,61 @@ def get_equidistant_positions(n_tasks, m_cranes):
     # Aunque con tus parámetros (n>=15, m<=5) esto nunca pasará.
     return sorted(list(set(positions)))
 
-# --- Generador Tamaño Pequeño (Small) ---
-def generate_small_instance():
-    num_tasks = random.randint(6, 12)
-    num_cranes = random.randint(2, 3)
-    
-    tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
-    
-    locs = get_equidistant_positions(num_tasks, num_cranes)
-    cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
-    
-    return GCSP_Instance(tasks, cranes)
 
-# --- Generador Tamaño Medio (Medium) ---
-def generate_medium_instance():
-    # n = 15, 16, ..., 20
-    num_tasks = random.randint(15, 20) 
-    # m = 2, 3, 4
-    num_cranes = random.randint(2, 4)  
+# --- Generador Tamaño Pequeño (Small) ---
+# Tareas: 6-12 | Grúas: 2-3 | Total: 14 instancias
+def generate_all_small_instances():
+    instances_list = []
+    # random.seed(42) # Descomenta si quieres que los tiempos sean idénticos siempre
     
-    # Tiempos: U(30, 180)
-    tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
+    for num_tasks in range(6, 13): # 6 a 12
+        for num_cranes in range(2, 4): # 2 a 3
+            tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
+            locs = get_equidistant_positions(num_tasks, num_cranes)
+            cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
+            
+            inst = GCSP_Instance(tasks, cranes)
+            inst.name = f"Small_T{num_tasks}_C{num_cranes}" # Etiqueta útil para el reporte
+            instances_list.append(inst)
+    return instances_list
+
+# --- Generador Tamaño Mediano (Medium) ---
+# Tareas: 13-20 | Grúas: 3-4 | Total: 16 instancias
+def generate_all_medium_instances():
+    instances_list = []
     
-    # Posicionamiento: 1 a n distribuido
-    locs = get_equidistant_positions(num_tasks, num_cranes)
-    cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
-    
-    return GCSP_Instance(tasks, cranes)
+    # Rango propuesto: 13 a 20 tareas
+    for num_tasks in range(13, 21): 
+        # Rango propuesto: 3 a 4 grúas
+        for num_cranes in range(3, 5): 
+            
+            tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
+            locs = get_equidistant_positions(num_tasks, num_cranes)
+            cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
+            
+            inst = GCSP_Instance(tasks, cranes)
+            inst.name = f"Medium_T{num_tasks}_C{num_cranes}"
+            instances_list.append(inst)
+    return instances_list
 
 # --- Generador Tamaño Grande (Large) ---
-def generate_large_instance():
+# Tareas: 21-30 | Grúas: 4-6 | Total: 30 instancias
+def generate_all_large_instances():
+    instances_list = []
+    
+    # Rango propuesto: 21 a 30 tareas
+    for num_tasks in range(21, 31): 
+        # Rango propuesto: 4 a 6 grúas (4, 5 y 6)
+        for num_cranes in range(4, 7): 
+            
+            tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
+            locs = get_equidistant_positions(num_tasks, num_cranes)
+            cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
+            
+            inst = GCSP_Instance(tasks, cranes)
+            inst.name = f"Large_T{num_tasks}_C{num_cranes}"
+            instances_list.append(inst)
+    return instances_list
     # n = 30, 40, 50, 60, 70 (Valores discretos específicos)
     num_tasks = random.choice([30, 40, 50, 60, 70])
     # m = 3, 4, 5
