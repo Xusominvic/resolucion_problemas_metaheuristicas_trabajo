@@ -1,87 +1,63 @@
+# main.py
 import argparse
-import sys
 from src.problem import generate_all_small_instances, generate_all_medium_instances, generate_all_large_instances
-from src.algorithms import tabu_search, simulated_annealing, multi_start_solver
+from src.algorithms import multi_start_solver, variable_neighborhood_search
 
 def main():
-    # 1. Configurar los argumentos que acepta el programa
-    parser = argparse.ArgumentParser(description="Solucionador GCSP: Tabu Search & Simulated Annealing")
+    parser = argparse.ArgumentParser(description="Solucionador GCSP: Híbrido VNS + Tabu Search")
     
-    # Argumento: Tamaño de la instancia
+    # Solo necesitamos el tamaño
     parser.add_argument('--size', type=str, choices=['small', 'medium', 'large'], required=True,
-                        help="Tamaño de la instancia a generar.")
+                        help="Tamaño de la instancia.")
     
-    # Argumento: Algoritmo
-    parser.add_argument('--algo', type=str, choices=['tabu', 'sa'], required=True,
-                        help="Algoritmo a utilizar: 'tabu' o 'sa' (Simulated Annealing).")
-    
-    # Argumentos Opcionales
-    parser.add_argument('--restarts', type=int, default=5, help="Número de reinicios para Multi-Arranque (Default: 5).")
-    parser.add_argument('--iter', type=int, default=100, help="Iteraciones máximas por arranque (Default: 100).")
-    
+    # Parámetros del experimento
+    parser.add_argument('--restarts', type=int, default=5, help="Intentos Multi-Start.")
+    parser.add_argument('--iter', type=int, default=100, help="Iteraciones Tabú (Profundidad).")
+    parser.add_argument('--tenure', type=int, default=8, help="Tabu Tenure.")
+    parser.add_argument('--candidates', type=int, default=20, help="Vecinos por iteración.")
+    parser.add_argument('--alpha', type=float, default=0.5, help="Alpha GRASP (0=Greedy, 1=Random).")
+
     args = parser.parse_args()
     
-    # ---------------------------------------------------------
-    # 2. GENERACIÓN DE LA LISTA DE INSTANCIAS (FUERA DEL BUCLE)
-    # ---------------------------------------------------------
-    # <--- CAMBIO: Generamos TODAS las instancias antes de empezar
-
-    instances_to_run = []
-
+    # Generación de Instancias
+    instances = []
     if args.size == 'small':
-        instances_to_run = generate_all_small_instances()
-        print(f"-> Generadas {len(instances_to_run)} instancias SMALL (exhaustivo).")
-
+        instances = generate_all_small_instances()
     elif args.size == 'medium':
-        instances_to_run = generate_all_medium_instances()
-        print(f"-> Generadas {len(instances_to_run)} instancias MEDIUM (exhaustivo).")
-
+        instances = generate_all_medium_instances()
     elif args.size == 'large':
-        instances_to_run = generate_all_large_instances()
-        print(f"-> Generadas {len(instances_to_run)} instancias LARGE (exhaustivo).")
+        instances = generate_all_large_instances()
+    
+    print(f"\n=== INICIANDO EXPERIMENTO ({args.size.upper()}) ===")
+    print(f"Config: Restarts={args.restarts} | TabuIter={args.iter} | Tenure={args.tenure} | Cand={args.candidates} | Alpha={args.alpha}")
 
-    total_instances = len(instances_to_run)
-    print(f"--- INICIANDO LOTE DE {total_instances} EXPERIMENTOS ({args.size.upper()} - {args.algo.upper()}) ---")
+    for i, instance in enumerate(instances, 1):
+        inst_name = getattr(instance, 'name', 'Instancia')
+        print(f"\n>>> [{i}/{len(instances)}] {inst_name} (T:{len(instance.tasks)} G:{len(instance.cranes)})")
 
-    # ---------------------------------------------------------
-    # --- BUCLE PRINCIPAL (Se repite 'instance_count' veces) ---
-    for i, instance in enumerate(instances_to_run, 1):
+        # Configuración Unificada
+        algo_params = {
+            'grasp_alpha': args.alpha,
+            'tabu_tenure': args.tenure,
+            'max_iter': args.iter,
+            'candidates_per_iter': args.candidates,
+            'vns_loops': 10 # Tope de seguridad para el bucle VNS
+        }
         
-        print(f"\n>>> EJECUCIÓN {i} DE {total_instances} <<<")
-        # Mostramos el nombre generado en problem.py (si lo pusiste) o datos genéricos
-        inst_name = getattr(instance, 'name', 'Sin Nombre')
-        print(f"Instancia: {inst_name} | Tareas: {len(instance.tasks)}, Grúas: {len(instance.cranes)}")
-
-
-        # 3. Selección del Algoritmo
-        if args.algo == 'tabu':
-            algo_func = tabu_search
-            # Parámetros específicos de Tabú
-            algo_params = {'tabu_tenure': 8, 'max_iter': args.iter, 'candidates_per_iter': 20}
-        
-        elif args.algo == 'sa':
-            algo_func = simulated_annealing
-            # Parámetros específicos de SA
-            algo_params = {'initial_temp': 500, 'cooling_rate': 0.98, 'max_iter': args.iter}
-
-        # 4. Ejecución (Usando siempre Multi-Start)
-        print(f"Ejecutando {args.restarts} arranques de {args.iter} iteraciones...")
-        
+        # Llamada única al solver
         best_seq, best_val = multi_start_solver(
             instance=instance,
-            algorithm_func=algo_func,
+            algorithm_func=variable_neighborhood_search,
             n_restarts=args.restarts,
             **algo_params
         )
 
-        # 5. Reporte de esta instancia
-        print("-" * 40)
-        print(f"RESULTADO INSTANCIA {i}:")
-        print(f"Makespan: {best_val}")
+        print("-" * 30)
+        print(f"RESULTADO FINAL: {best_val}")
         print(f"Secuencia: {best_seq}")
-        print("-" * 40)
+        print("-" * 30)
 
-    print("\n=== LOTE DE EXPERIMENTOS FINALIZADO ===")
+    print("\n=== FIN DEL LOTE ===")
 
 if __name__ == "__main__":
     main()
