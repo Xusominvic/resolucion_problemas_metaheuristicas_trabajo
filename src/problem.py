@@ -80,7 +80,7 @@ def generate_all_medium_instances():
         # Rango propuesto: 3 a 4 grúas
         for num_cranes in range(3, 5): 
             
-            tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
+            tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
             locs = get_equidistant_positions(num_tasks, num_cranes)
             cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
             
@@ -99,7 +99,7 @@ def generate_all_large_instances():
         # Rango propuesto: 4 a 6 grúas (4, 5 y 6)
         for num_cranes in range(4, 7): 
             
-            tasks = [Task(i, i, random.randint(20, 150)) for i in range(1, num_tasks+1)]
+            tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
             locs = get_equidistant_positions(num_tasks, num_cranes)
             cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
             
@@ -107,16 +107,3 @@ def generate_all_large_instances():
             inst.name = f"Large_T{num_tasks}_C{num_cranes}"
             instances_list.append(inst)
     return instances_list
-    # n = 30, 40, 50, 60, 70 (Valores discretos específicos)
-    num_tasks = random.choice([30, 40, 50, 60, 70])
-    # m = 3, 4, 5
-    num_cranes = random.randint(3, 5)
-    
-    # Tiempos: U(30, 180)
-    tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
-    
-    # Posicionamiento: 1 a n distribuido
-    locs = get_equidistant_positions(num_tasks, num_cranes)
-    cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
-    
-    return GCSP_Instance(tasks, cranes)
