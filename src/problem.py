@@ -74,11 +74,11 @@ def generate_all_small_instances():
 # Tareas: 13-20 | Grúas: 3-4 | Total: 16 instancias
 def generate_all_medium_instances():
     instances_list = []
-    
-    # Rango propuesto: 13 a 20 tareas
-    for num_tasks in range(13, 21): 
-        # Rango propuesto: 3 a 4 grúas
-        for num_cranes in range(3, 5): 
+
+    # Rango propuesto: 15 a 20 tareas
+    for num_tasks in range(15, 21): 
+        # Rango propuesto: 2 a 3 grúas
+        for num_cranes in range(2, 5): 
             
             tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
             locs = get_equidistant_positions(num_tasks, num_cranes)

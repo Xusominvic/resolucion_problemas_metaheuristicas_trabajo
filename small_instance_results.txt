@@ -118,3 +118,57 @@ Secuencia: [12, 10, 11, 7, 3, 8, 2, 1, 5, 9, 4, 6]
 ------------------------------
 
 === FIN DEL LOTE ===
+
+=== EXPERIMENTO (SMALL) | Params: R=5 Iter=100 T=2 C=20 ===
+Instancia            | LB (Teórico) | Makespan   | Gap (%)    | Tiempo (s) | Secuencia
+-------------------------------------------------------------------------------------------------------------------
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 234.0
+Small_T6_C2          | 230.0        | 234.0      | 1.74       | 0.60       | [5, 1, 6, 2, 4]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 174.0
+Small_T6_C3          | 157.0        | 174.0      | 10.83      | 0.76       | [4, 6, 5, 3, 2]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 333.0
+Small_T7_C2          | 323.0        | 333.0      | 3.10       | 1.46       | [7, 4, 3, 1, 6]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 255.0
+Small_T7_C3          | 239.0        | 255.0      | 6.69       | 0.69       | [3, 1, 5, 7, 6]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 299.0
+Small_T8_C2          | 284.0        | 299.0      | 5.28       | 0.72       | [5, 1, 6, 4, 2]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 199.0
+  [Intento 2] ¡Récord! Makespan: 198.0
+Small_T8_C3          | 180.0        | 198.0      | 10.00      | 0.74       | [8, 7, 4, 1, 3]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 324.0
+Small_T9_C2          | 314.0        | 324.0      | 3.18       | 0.70       | [1, 4, 3, 2, 5]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 335.0
+Small_T9_C3          | 317.0        | 335.0      | 5.68       | 0.89       | [8, 7, 6, 3, 1]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 574.0
+Small_T10_C2         | 564.0        | 574.0      | 1.77       | 0.92       | [1, 8, 3, 6, 9]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 308.0
+  [Intento 3] ¡Récord! Makespan: 303.0
+Small_T10_C3         | 293.0        | 303.0      | 3.41       | 0.88       | [8, 2, 7, 10, 9]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 470.0
+Small_T11_C2         | 459.0        | 470.0      | 2.40       | 1.12       | [1, 9, 4, 2, 5]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 387.0
+  [Intento 3] ¡Récord! Makespan: 385.0
+Small_T11_C3         | 378.0        | 385.0      | 1.85       | 1.31       | [4, 1, 2, 8, 6]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 539.0
+Small_T12_C2         | 528.0        | 539.0      | 2.08       | 1.27       | [12, 1, 2, 8, 3]...
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 369.0
+  [Intento 2] ¡Récord! Makespan: 366.0
+Small_T12_C3         | 345.0        | 366.0      | 6.09       | 1.14       | [4, 1, 12, 7, 8]...
+-------------------------------------------------------------------------------------------------------------------
+PROMEDIO GAP GLOBAL:   4.58%
+TIEMPO MEDIO POR INST: 0.94 s
+=== FIN DEL EXPERIMENTO ===

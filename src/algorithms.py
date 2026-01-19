@@ -4,6 +4,25 @@ import random
 import copy
 
 # =========================================================
+# 0. CÁLCULO DE COTAS (NUEVO)
+# =========================================================
+def calculate_lower_bound(instance):
+    """
+    Calcula la Cota Inferior (Lower Bound) teórica.
+    LB = max(Carga Promedio, Tarea Más Larga).
+    Es imposible obtener un makespan menor que este valor.
+    """
+    # 1. Carga Promedio (Average Load)
+    total_processing_time = sum(t.p_0 for t in instance.tasks)
+    avg_load = total_processing_time / len(instance.cranes)
+    
+    # 2. Tarea más larga (Max Job)
+    max_job = max(t.p_0 for t in instance.tasks)
+    
+    # El LB es el mayor de los dos (redondeado hacia arriba)
+    return math.ceil(max(avg_load, max_job))
+
+# =========================================================
 # 1. EVALUADOR (Makespan)
 # =========================================================
 
