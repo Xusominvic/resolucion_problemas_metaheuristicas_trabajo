@@ -90,20 +90,29 @@ def generate_all_medium_instances():
     return instances_list
 
 # --- Generador Tamaño Grande (Large) ---
-# Tareas: 21-30 | Grúas: 4-6 | Total: 30 instancias
+# Tareas: 30, 40, 50, 60, 70 | Grúas: 3, 4, 5
 def generate_all_large_instances():
     instances_list = []
     
-    # Rango propuesto: 21 a 30 tareas
-    for num_tasks in range(21, 31): 
-        # Rango propuesto: 4 a 6 grúas (4, 5 y 6)
-        for num_cranes in range(4, 7): 
+    # Lista explícita de tareas
+    target_tasks = [30, 40, 50, 60, 70]
+    
+    # Lista explícita de grúas
+    target_cranes = [3, 4, 5]
+    
+    for num_tasks in target_tasks: 
+        for num_cranes in target_cranes: 
             
+            # Generamos las tareas
             tasks = [Task(i, i, random.randint(30, 180)) for i in range(1, num_tasks+1)]
+            
+            # Posicionamos las grúas
             locs = get_equidistant_positions(num_tasks, num_cranes)
             cranes = [Crane(k, locs[k-1]) for k in range(1, num_cranes+1)]
             
+            # Creamos la instancia
             inst = GCSP_Instance(tasks, cranes)
             inst.name = f"Large_T{num_tasks}_C{num_cranes}"
             instances_list.append(inst)
+            
     return instances_list
