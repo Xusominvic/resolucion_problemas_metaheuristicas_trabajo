@@ -1,0 +1,1423 @@
+Generando instancias LARGE para el test...
+
+--- INICIANDO GRID SEARCH (9 combinaciones) ---
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 552.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 486.0
+  [Intento 2] ¡Récord! Makespan: 482.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 401.0
+  [Intento 2] ¡Récord! Makespan: 388.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 617.0
+  [Intento 2] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 515.0
+  [Intento 2] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 405.0
+  [Intento 2] ¡Récord! Makespan: 403.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 584.0
+  [Intento 2] ¡Récord! Makespan: 573.0
+  [Intento 3] ¡Récord! Makespan: 569.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 375.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 423.0
+  [Intento 3] ¡Récord! Makespan: 422.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 696.0
+  [Intento 2] ¡Récord! Makespan: 690.0
+  [Intento 3] ¡Récord! Makespan: 686.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 510.0
+  [Intento 2] ¡Récord! Makespan: 509.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 3] ¡Récord! Makespan: 458.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+  [Intento 2] ¡Récord! Makespan: 682.0
+  [Intento 3] ¡Récord! Makespan: 681.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 405.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 766.0
+  [Intento 2] ¡Récord! Makespan: 751.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 2] ¡Récord! Makespan: 596.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 448.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 757.0
+  [Intento 2] ¡Récord! Makespan: 756.0
+  [Intento 3] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 561.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 540.0
+  [Intento 2] ¡Récord! Makespan: 536.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 722.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 470.0
+  [Intento 3] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 444.0
+  [Intento 2] ¡Récord! Makespan: 440.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 829.0
+  [Intento 3] ¡Récord! Makespan: 826.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 606.0
+  [Intento 2] ¡Récord! Makespan: 599.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 549.0
+  [Intento 2] ¡Récord! Makespan: 540.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 772.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 684.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 433.0
+  [Intento 2] ¡Récord! Makespan: 430.0
+  [Intento 3] ¡Récord! Makespan: 428.0
+  -> Resultado: Promedio Makespan = 554.07 (Tiempo: 1621.72s)
+¡Nuevo Mejor Candidato!
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 550.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 479.0
+  [Intento 3] ¡Récord! Makespan: 478.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 393.0
+  [Intento 3] ¡Récord! Makespan: 389.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 406.0
+  [Intento 2] ¡Récord! Makespan: 403.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 571.0
+  [Intento 3] ¡Récord! Makespan: 569.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 377.0
+  [Intento 2] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 422.0
+  [Intento 2] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 693.0
+  [Intento 2] ¡Récord! Makespan: 690.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 513.0
+  [Intento 2] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 470.0
+  [Intento 2] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+  [Intento 2] ¡Récord! Makespan: 681.0
+  [Intento 3] ¡Récord! Makespan: 679.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 400.0
+  [Intento 2] ¡Récord! Makespan: 398.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 762.0
+  [Intento 2] ¡Récord! Makespan: 758.0
+  [Intento 3] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 599.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 3] ¡Récord! Makespan: 449.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 537.0
+  [Intento 2] ¡Récord! Makespan: 536.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 728.0
+  [Intento 2] ¡Récord! Makespan: 724.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 826.0
+  [Intento 3] ¡Récord! Makespan: 821.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 542.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 776.0
+  [Intento 2] ¡Récord! Makespan: 771.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 685.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 433.0
+  [Intento 3] ¡Récord! Makespan: 431.0
+  -> Resultado: Promedio Makespan = 553.90 (Tiempo: 3167.11s)
+¡Nuevo Mejor Candidato!
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 2000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 549.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 478.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 401.0
+  [Intento 2] ¡Récord! Makespan: 398.0
+  [Intento 3] ¡Récord! Makespan: 389.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 617.0
+  [Intento 2] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 513.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 403.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 569.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 377.0
+  [Intento 3] ¡Récord! Makespan: 375.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 425.0
+  [Intento 2] ¡Récord! Makespan: 423.0
+  [Intento 3] ¡Récord! Makespan: 421.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 692.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 2] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+  [Intento 2] ¡Récord! Makespan: 681.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 453.0
+  [Intento 3] ¡Récord! Makespan: 452.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 404.0
+  [Intento 2] ¡Récord! Makespan: 401.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 754.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 602.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 456.0
+  [Intento 2] ¡Récord! Makespan: 452.0
+  [Intento 3] ¡Récord! Makespan: 448.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 751.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 536.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 722.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 470.0
+  [Intento 3] ¡Récord! Makespan: 467.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 441.0
+  [Intento 2] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 820.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 603.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 547.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 769.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 695.0
+  [Intento 2] ¡Récord! Makespan: 687.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 437.0
+  [Intento 2] ¡Récord! Makespan: 430.0
+  [Intento 3] ¡Récord! Makespan: 429.0
+  -> Resultado: Promedio Makespan = 554.73 (Tiempo: 5718.18s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+  [Intento 2] ¡Récord! Makespan: 553.0
+  [Intento 3] ¡Récord! Makespan: 552.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 482.0
+  [Intento 2] ¡Récord! Makespan: 479.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 388.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 624.0
+  [Intento 2] ¡Récord! Makespan: 622.0
+  [Intento 3] ¡Récord! Makespan: 617.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 2] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 407.0
+  [Intento 2] ¡Récord! Makespan: 403.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 584.0
+  [Intento 2] ¡Récord! Makespan: 575.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 376.0
+  [Intento 3] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 686.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 510.0
+  [Intento 2] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 468.0
+  [Intento 2] ¡Récord! Makespan: 467.0
+  [Intento 3] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 400.0
+  [Intento 2] ¡Récord! Makespan: 399.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+  [Intento 2] ¡Récord! Makespan: 749.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 606.0
+  [Intento 2] ¡Récord! Makespan: 596.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 460.0
+  [Intento 3] ¡Récord! Makespan: 458.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+  [Intento 2] ¡Récord! Makespan: 561.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 536.0
+  [Intento 2] ¡Récord! Makespan: 535.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 730.0
+  [Intento 2] ¡Récord! Makespan: 729.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 469.0
+  [Intento 3] ¡Récord! Makespan: 468.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 449.0
+  [Intento 2] ¡Récord! Makespan: 448.0
+  [Intento 3] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 826.0
+  [Intento 2] ¡Récord! Makespan: 825.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 595.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+  [Intento 2] ¡Récord! Makespan: 543.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 775.0
+  [Intento 2] ¡Récord! Makespan: 774.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 686.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 430.0
+  [Intento 3] ¡Récord! Makespan: 429.0
+  -> Resultado: Promedio Makespan = 554.90 (Tiempo: 1752.17s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 565.0
+  [Intento 2] ¡Récord! Makespan: 563.0
+  [Intento 3] ¡Récord! Makespan: 556.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 476.0
+  [Intento 2] ¡Récord! Makespan: 475.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 399.0
+  [Intento 2] ¡Récord! Makespan: 398.0
+  [Intento 3] ¡Récord! Makespan: 389.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 3] ¡Récord! Makespan: 514.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 402.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 578.0
+  [Intento 2] ¡Récord! Makespan: 572.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 423.0
+  [Intento 2] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 689.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 509.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 396.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 754.0
+  [Intento 3] ¡Récord! Makespan: 753.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 601.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 448.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+  [Intento 3] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 539.0
+  [Intento 3] ¡Récord! Makespan: 535.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 727.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 473.0
+  [Intento 2] ¡Récord! Makespan: 468.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 448.0
+  [Intento 2] ¡Récord! Makespan: 445.0
+  [Intento 3] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 831.0
+  [Intento 3] ¡Récord! Makespan: 826.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 598.0
+  [Intento 2] ¡Récord! Makespan: 595.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 542.0
+  [Intento 2] ¡Récord! Makespan: 541.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 768.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 685.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 429.0
+  -> Resultado: Promedio Makespan = 554.33 (Tiempo: 3321.43s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 2000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 553.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 478.0
+  [Intento 2] ¡Récord! Makespan: 475.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 398.0
+  [Intento 3] ¡Récord! Makespan: 389.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 616.0
+  [Intento 2] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 403.0
+  [Intento 2] ¡Récord! Makespan: 402.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 580.0
+  [Intento 2] ¡Récord! Makespan: 574.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 422.0
+  [Intento 3] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 691.0
+  [Intento 2] ¡Récord! Makespan: 690.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 2] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 404.0
+  [Intento 2] ¡Récord! Makespan: 400.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 754.0
+  [Intento 2] ¡Récord! Makespan: 749.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 601.0
+  [Intento 3] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 2] ¡Récord! Makespan: 449.0
+  [Intento 3] ¡Récord! Makespan: 448.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 753.0
+  [Intento 3] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 541.0
+  [Intento 2] ¡Récord! Makespan: 539.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 730.0
+  [Intento 2] ¡Récord! Makespan: 727.0
+  [Intento 3] ¡Récord! Makespan: 725.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 825.0
+  [Intento 3] ¡Récord! Makespan: 824.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 3] ¡Récord! Makespan: 599.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 547.0
+  [Intento 2] ¡Récord! Makespan: 542.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 775.0
+  [Intento 2] ¡Récord! Makespan: 772.0
+  [Intento 3] ¡Récord! Makespan: 768.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 688.0
+  [Intento 2] ¡Récord! Makespan: 686.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 431.0
+  -> Resultado: Promedio Makespan = 554.23 (Tiempo: 9670.16s)
+
+[Evaluando Configuración] Tenure: 30 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 558.0
+  [Intento 2] ¡Récord! Makespan: 553.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 487.0
+  [Intento 2] ¡Récord! Makespan: 478.0
+  [Intento 3] ¡Récord! Makespan: 475.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 398.0
+  [Intento 3] ¡Récord! Makespan: 389.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 2] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 403.0
+  [Intento 2] ¡Récord! Makespan: 400.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 580.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 382.0
+  [Intento 2] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 685.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 2] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 686.0
+  [Intento 3] ¡Récord! Makespan: 678.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 456.0
+  [Intento 2] ¡Récord! Makespan: 451.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 404.0
+  [Intento 2] ¡Récord! Makespan: 400.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 602.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 458.0
+  [Intento 2] ¡Récord! Makespan: 448.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 561.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 540.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 724.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 449.0
+  [Intento 2] ¡Récord! Makespan: 440.0
+  [Intento 3] ¡Récord! Makespan: 437.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 820.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 2] ¡Récord! Makespan: 599.0
+  [Intento 3] ¡Récord! Makespan: 595.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 551.0
+  [Intento 2] ¡Récord! Makespan: 539.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 779.0
+  [Intento 2] ¡Récord! Makespan: 775.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 683.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 434.0
+  [Intento 3] ¡Récord! Makespan: 433.0
+  -> Resultado: Promedio Makespan = 554.10 (Tiempo: 2088.70s)
+
+[Evaluando Configuración] Tenure: 30 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 551.0
+  [Intento 2] ¡Récord! Makespan: 549.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 478.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 403.0
+  [Intento 2] ¡Récord! Makespan: 398.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 613.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 512.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 403.0
+  [Intento 3] ¡Récord! Makespan: 402.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 581.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 373.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 423.0
+  [Intento 3] ¡Récord! Makespan: 419.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 690.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 681.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 454.0
+  [Intento 2] ¡Récord! Makespan: 453.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 400.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 754.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 603.0
+  [Intento 3] ¡Récord! Makespan: 599.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 2] ¡Récord! Makespan: 460.0
+  [Intento 3] ¡Récord! Makespan: 449.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 752.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 540.0
+  [Intento 2] ¡Récord! Makespan: 536.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 730.0
+  [Intento 3] ¡Récord! Makespan: 729.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 469.0
+  [Intento 2] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 439.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 826.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 2] ¡Récord! Makespan: 599.0
+  [Intento 3] ¡Récord! Makespan: 596.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 549.0
+  [Intento 2] ¡Récord! Makespan: 541.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 773.0
+  [Intento 3] ¡Récord! Makespan: 768.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 687.0
+  [Intento 2] ¡Récord! Makespan: 684.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+Generando instancias LARGE para el test...
+
+--- INICIANDO GRID SEARCH (9 combinaciones) ---
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 677.0
+  [Intento 3] ¡Récord! Makespan: 674.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 477.0
+  [Intento 2] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 499.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 671.0
+  [Intento 2] ¡Récord! Makespan: 666.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 2] ¡Récord! Makespan: 592.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 433.0
+  [Intento 2] ¡Récord! Makespan: 431.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 639.0
+  [Intento 2] ¡Récord! Makespan: 631.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 525.0
+  [Intento 3] ¡Récord! Makespan: 524.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 439.0
+  [Intento 2] ¡Récord! Makespan: 432.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 766.0
+  [Intento 2] ¡Récord! Makespan: 761.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 468.0
+  [Intento 2] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 728.0
+  [Intento 2] ¡Récord! Makespan: 726.0
+  [Intento 3] ¡Récord! Makespan: 724.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 564.0
+  [Intento 3] ¡Récord! Makespan: 561.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 466.0
+  [Intento 2] ¡Récord! Makespan: 456.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 767.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 583.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 498.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 854.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 707.0
+  [Intento 2] ¡Récord! Makespan: 704.0
+  [Intento 3] ¡Récord! Makespan: 698.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 519.0
+  [Intento 3] ¡Récord! Makespan: 518.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 739.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 651.0
+  [Intento 2] ¡Récord! Makespan: 647.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 929.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 693.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 503.0
+  [Intento 2] ¡Récord! Makespan: 502.0
+  -> Resultado: Promedio Makespan = 586.50 (Tiempo: 718.75s)
+¡Nuevo Mejor Candidato!
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 674.0
+  [Intento 3] ¡Récord! Makespan: 672.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 479.0
+  [Intento 2] ¡Récord! Makespan: 475.0
+  [Intento 3] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+  [Intento 2] ¡Récord! Makespan: 501.0
+  [Intento 3] ¡Récord! Makespan: 499.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 669.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 3] ¡Récord! Makespan: 592.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 429.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 635.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 529.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 440.0
+  [Intento 2] ¡Récord! Makespan: 438.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 761.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 565.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 2] ¡Récord! Makespan: 457.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 720.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+  [Intento 2] ¡Récord! Makespan: 561.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 466.0
+  [Intento 2] ¡Récord! Makespan: 461.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 774.0
+  [Intento 3] ¡Récord! Makespan: 771.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 589.0
+  [Intento 3] ¡Récord! Makespan: 586.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 503.0
+  [Intento 2] ¡Récord! Makespan: 501.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 861.0
+  [Intento 2] ¡Récord! Makespan: 859.0
+  [Intento 3] ¡Récord! Makespan: 854.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 698.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 745.0
+  [Intento 2] ¡Récord! Makespan: 742.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 650.0
+  [Intento 3] ¡Récord! Makespan: 648.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 467.0
+  [Intento 2] ¡Récord! Makespan: 465.0
+  [Intento 3] ¡Récord! Makespan: 464.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 939.0
+  [Intento 2] ¡Récord! Makespan: 935.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 692.0
+  [Intento 2] ¡Récord! Makespan: 686.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 515.0
+  [Intento 2] ¡Récord! Makespan: 501.0
+  -> Resultado: Promedio Makespan = 587.57 (Tiempo: 1473.67s)
+
+[Evaluando Configuración] Tenure: 10 | Candidates: 2000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 669.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 474.0
+  [Intento 2] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 512.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 497.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 669.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 433.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 636.0
+  [Intento 3] ¡Récord! Makespan: 635.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 524.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 438.0
+  [Intento 3] ¡Récord! Makespan: 435.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 765.0
+  [Intento 3] ¡Récord! Makespan: 762.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 723.0
+  [Intento 2] ¡Récord! Makespan: 717.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 566.0
+  [Intento 2] ¡Récord! Makespan: 563.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 770.0
+  [Intento 3] ¡Récord! Makespan: 769.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 585.0
+  [Intento 2] ¡Récord! Makespan: 583.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 506.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 861.0
+  [Intento 3] ¡Récord! Makespan: 860.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 707.0
+  [Intento 2] ¡Récord! Makespan: 700.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 522.0
+  [Intento 2] ¡Récord! Makespan: 521.0
+  [Intento 3] ¡Récord! Makespan: 515.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 737.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 640.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 951.0
+  [Intento 2] ¡Récord! Makespan: 929.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 704.0
+  [Intento 2] ¡Récord! Makespan: 699.0
+  [Intento 3] ¡Récord! Makespan: 693.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 506.0
+  -> Resultado: Promedio Makespan = 587.57 (Tiempo: 2996.59s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 677.0
+  [Intento 2] ¡Récord! Makespan: 669.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 475.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 513.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 499.0
+  [Intento 3] ¡Récord! Makespan: 496.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 666.0
+  [Intento 3] ¡Récord! Makespan: 665.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 431.0
+  [Intento 2] ¡Récord! Makespan: 429.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 648.0
+  [Intento 2] ¡Récord! Makespan: 642.0
+  [Intento 3] ¡Récord! Makespan: 637.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 538.0
+  [Intento 2] ¡Récord! Makespan: 529.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 438.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 765.0
+  [Intento 2] ¡Récord! Makespan: 762.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 3] ¡Récord! Makespan: 457.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 721.0
+  [Intento 2] ¡Récord! Makespan: 718.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 564.0
+  [Intento 2] ¡Récord! Makespan: 560.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 468.0
+  [Intento 2] ¡Récord! Makespan: 460.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 778.0
+  [Intento 2] ¡Récord! Makespan: 767.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 590.0
+  [Intento 2] ¡Récord! Makespan: 585.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 506.0
+  [Intento 3] ¡Récord! Makespan: 500.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 859.0
+  [Intento 2] ¡Récord! Makespan: 858.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 703.0
+  [Intento 2] ¡Récord! Makespan: 701.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 519.0
+  [Intento 3] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 742.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 641.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 929.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 699.0
+  [Intento 3] ¡Récord! Makespan: 688.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 509.0
+  [Intento 2] ¡Récord! Makespan: 506.0
+  -> Resultado: Promedio Makespan = 587.27 (Tiempo: 866.54s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 674.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 515.0
+  [Intento 2] ¡Récord! Makespan: 514.0
+  [Intento 3] ¡Récord! Makespan: 511.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 501.0
+  [Intento 3] ¡Récord! Makespan: 499.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 668.0
+  [Intento 2] ¡Récord! Makespan: 667.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 3] ¡Récord! Makespan: 591.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 431.0
+  [Intento 3] ¡Récord! Makespan: 429.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 634.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 542.0
+  [Intento 3] ¡Récord! Makespan: 524.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 441.0
+  [Intento 2] ¡Récord! Makespan: 435.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 764.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 722.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 460.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 771.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 586.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 503.0
+  [Intento 2] ¡Récord! Makespan: 499.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 864.0
+  [Intento 2] ¡Récord! Makespan: 857.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 709.0
+  [Intento 2] ¡Récord! Makespan: 703.0
+  [Intento 3] ¡Récord! Makespan: 699.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 512.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 742.0
+  [Intento 2] ¡Récord! Makespan: 740.0
+  [Intento 3] ¡Récord! Makespan: 739.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 638.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+  [Intento 3] ¡Récord! Makespan: 464.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 935.0
+  [Intento 2] ¡Récord! Makespan: 929.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 694.0
+  [Intento 2] ¡Récord! Makespan: 684.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 506.0
+  [Intento 2] ¡Récord! Makespan: 502.0
+  -> Resultado: Promedio Makespan = 586.73 (Tiempo: 1346.56s)
+
+[Evaluando Configuración] Tenure: 20 | Candidates: 2000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 675.0
+  [Intento 3] ¡Récord! Makespan: 674.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 479.0
+  [Intento 2] ¡Récord! Makespan: 472.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 510.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 499.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 671.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+  [Intento 2] ¡Récord! Makespan: 594.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 431.0
+  [Intento 2] ¡Récord! Makespan: 429.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 637.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 542.0
+  [Intento 3] ¡Récord! Makespan: 533.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 429.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 770.0
+  [Intento 2] ¡Récord! Makespan: 768.0
+  [Intento 3] ¡Récord! Makespan: 762.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 721.0
+  [Intento 3] ¡Récord! Makespan: 720.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 569.0
+  [Intento 2] ¡Récord! Makespan: 560.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+  [Intento 3] ¡Récord! Makespan: 456.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 777.0
+  [Intento 2] ¡Récord! Makespan: 769.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 585.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 492.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 860.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 708.0
+  [Intento 2] ¡Récord! Makespan: 704.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 522.0
+  [Intento 2] ¡Récord! Makespan: 519.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 742.0
+  [Intento 2] ¡Récord! Makespan: 739.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 661.0
+  [Intento 2] ¡Récord! Makespan: 654.0
+  [Intento 3] ¡Récord! Makespan: 646.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 3] ¡Récord! Makespan: 461.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 932.0
+  [Intento 3] ¡Récord! Makespan: 929.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 703.0
+  [Intento 2] ¡Récord! Makespan: 699.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 502.0
+  -> Resultado: Promedio Makespan = 587.43 (Tiempo: 2941.22s)
+
+[Evaluando Configuración] Tenure: 30 | Candidates: 500
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 671.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 479.0
+  [Intento 2] ¡Récord! Makespan: 472.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 509.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 508.0
+  [Intento 2] ¡Récord! Makespan: 497.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+  [Intento 3] ¡Récord! Makespan: 418.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 672.0
+  [Intento 3] ¡Récord! Makespan: 666.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 631.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 525.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 437.0
+  [Intento 2] ¡Récord! Makespan: 435.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 767.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 562.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 471.0
+  [Intento 2] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 718.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 564.0
+  [Intento 3] ¡Récord! Makespan: 563.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 471.0
+  [Intento 2] ¡Récord! Makespan: 467.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 768.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 586.0
+  [Intento 3] ¡Récord! Makespan: 584.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 492.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 858.0
+  [Intento 2] ¡Récord! Makespan: 853.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 703.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 2] ¡Récord! Makespan: 519.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 746.0
+  [Intento 2] ¡Récord! Makespan: 743.0
+  [Intento 3] ¡Récord! Makespan: 739.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 645.0
+  [Intento 3] ¡Récord! Makespan: 641.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 471.0
+  [Intento 2] ¡Récord! Makespan: 469.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 928.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 687.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 499.0
+  -> Resultado: Promedio Makespan = 586.43 (Tiempo: 887.73s)
+¡Nuevo Mejor Candidato!
+
+[Evaluando Configuración] Tenure: 30 | Candidates: 1000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 667.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 515.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 498.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 667.0
+  [Intento 3] ¡Récord! Makespan: 663.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 424.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 642.0
+  [Intento 2] ¡Récord! Makespan: 636.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 529.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 441.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 764.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 458.0
+  [Intento 2] ¡Récord! Makespan: 457.0
+  [Intento 3] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 732.0
+  [Intento 2] ¡Récord! Makespan: 730.0
+  [Intento 3] ¡Récord! Makespan: 720.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 563.0
+  [Intento 3] ¡Récord! Makespan: 560.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 458.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 767.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 585.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 499.0
+  [Intento 3] ¡Récord! Makespan: 496.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 855.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 703.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 2] ¡Récord! Makespan: 517.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 740.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 644.0
+  [Intento 3] ¡Récord! Makespan: 641.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+  [Intento 2] ¡Récord! Makespan: 463.0
+  [Intento 3] ¡Récord! Makespan: 461.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 930.0
+  [Intento 2] ¡Récord! Makespan: 928.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 692.0
+  [Intento 3] ¡Récord! Makespan: 691.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 514.0
+  [Intento 2] ¡Récord! Makespan: 506.0
+  -> Resultado: Promedio Makespan = 587.00 (Tiempo: 1556.26s)
+
+[Evaluando Configuración] Tenure: 30 | Candidates: 2000
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 674.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 479.0
+  [Intento 2] ¡Récord! Makespan: 473.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 338.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 512.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 498.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 664.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 600.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 429.0
+  [Intento 3] ¡Récord! Makespan: 420.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 632.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 542.0
+  [Intento 2] ¡Récord! Makespan: 531.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 435.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 767.0
+  [Intento 2] ¡Récord! Makespan: 765.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 566.0
+  [Intento 2] ¡Récord! Makespan: 559.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 460.0
+  [Intento 2] ¡Récord! Makespan: 456.0
+  [Intento 3] ¡Récord! Makespan: 455.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 722.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 565.0
+  [Intento 2] ¡Récord! Makespan: 560.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 470.0
+  [Intento 2] ¡Récord! Makespan: 458.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 776.0
+  [Intento 2] ¡Récord! Makespan: 769.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 589.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 500.0
+  [Intento 2] ¡Récord! Makespan: 498.0
+  [Intento 3] ¡Récord! Makespan: 494.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 860.0
+  [Intento 3] ¡Récord! Makespan: 854.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 708.0
+  [Intento 2] ¡Récord! Makespan: 703.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 522.0
+  [Intento 2] ¡Récord! Makespan: 521.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 740.0
+  [Intento 2] ¡Récord! Makespan: 739.0
+  [Intento 3] ¡Récord! Makespan: 738.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 648.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 465.0
+  [Intento 2] ¡Récord! Makespan: 463.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 934.0
+  [Intento 2] ¡Récord! Makespan: 932.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 691.0
+  [Intento 2] ¡Récord! Makespan: 690.0
+--- Multi-Start: 3 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 515.0
+  [Intento 2] ¡Récord! Makespan: 513.0
+  -> Resultado: Promedio Makespan = 587.67 (Tiempo: 3696.90s)
+
+========================================
+GRID SEARCH FINALIZADO
+Mejor Configuración Encontrada:
+  - Tabu Tenure: 30
+  - Candidates:  500
+  - Makespan Promedio: 586.43
+========================================

@@ -32,7 +32,7 @@ def run_grid_search_large():
                 'grasp_alpha': 0.5,      # Mantenemos fijo el GRASP
                 'tabu_tenure': tenure,   # Variable del bucle 1
                 'candidates_per_iter': candidates, # Variable del bucle 2
-                'max_iter': 100,          # Iteraciones un poco más bajas para que sea rápido
+                'max_iter': 40,          # Iteraciones un poco más bajas para que sea rápido
                 'vns_loops': 5
             }
 

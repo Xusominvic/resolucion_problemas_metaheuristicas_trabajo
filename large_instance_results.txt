@@ -1,0 +1,274 @@
+
+=== INICIANDO EXPERIMENTO (LARGE) ===
+Config: Restarts=5 | TabuIter=100 | Tenure=30 | Cand=500 | Alpha=0.5
+
+>>> [1/30] Large_T21_C4 (T:21 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 553.0
+  [Intento 2] ¡Récord! Makespan: 551.0
+------------------------------
+RESULTADO FINAL: 551.0
+Secuencia: [8, 21, 3, 15, 9, 17, 6, 11, 7, 2, 19, 10, 20, 1, 13, 5, 18, 12, 4, 16, 14]
+------------------------------
+
+>>> [2/30] Large_T21_C5 (T:21 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 437.0
+------------------------------
+RESULTADO FINAL: 437.0
+Secuencia: [1, 19, 15, 5, 2, 10, 20, 9, 21, 16, 14, 3, 12, 17, 18, 11, 7, 4, 13, 6, 8]
+------------------------------
+
+>>> [3/30] Large_T21_C6 (T:21 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 379.0
+------------------------------
+RESULTADO FINAL: 379.0
+Secuencia: [14, 6, 16, 21, 2, 1, 15, 8, 20, 19, 3, 17, 18, 7, 9, 12, 5, 13, 4, 11, 10]
+------------------------------
+
+>>> [4/30] Large_T22_C4 (T:22 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 623.0
+------------------------------
+RESULTADO FINAL: 623.0
+Secuencia: [5, 15, 9, 1, 8, 19, 2, 3, 16, 20, 12, 7, 11, 21, 10, 14, 22, 17, 13, 4, 6, 18]
+------------------------------
+
+>>> [5/30] Large_T22_C5 (T:22 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 493.0
+  [Intento 2] ¡Récord! Makespan: 492.0
+  [Intento 4] ¡Récord! Makespan: 488.0
+------------------------------
+RESULTADO FINAL: 488.0
+Secuencia: [21, 15, 1, 18, 22, 5, 19, 8, 12, 2, 14, 6, 20, 16, 7, 17, 9, 3, 11, 10, 4, 13]
+------------------------------
+
+>>> [6/30] Large_T22_C6 (T:22 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 456.0
+  [Intento 4] ¡Récord! Makespan: 455.0
+------------------------------
+RESULTADO FINAL: 455.0
+Secuencia: [18, 11, 14, 15, 5, 19, 7, 3, 20, 4, 6, 22, 13, 10, 1, 17, 16, 2, 9, 8, 21, 12]
+------------------------------
+
+>>> [7/30] Large_T23_C4 (T:23 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 653.0
+------------------------------
+RESULTADO FINAL: 653.0
+Secuencia: [15, 1, 23, 17, 14, 10, 22, 6, 18, 9, 5, 11, 21, 8, 2, 7, 3, 20, 13, 19, 12, 4, 16]
+------------------------------
+
+>>> [8/30] Large_T23_C5 (T:23 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 569.0
+  [Intento 4] ¡Récord! Makespan: 567.0
+  [Intento 5] ¡Récord! Makespan: 566.0
+------------------------------
+RESULTADO FINAL: 566.0
+Secuencia: [17, 23, 5, 22, 16, 19, 4, 21, 6, 3, 7, 18, 2, 10, 11, 8, 1, 9, 13, 20, 12, 14, 15]
+------------------------------
+
+>>> [9/30] Large_T23_C6 (T:23 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 382.0
+  [Intento 3] ¡Récord! Makespan: 377.0
+------------------------------
+RESULTADO FINAL: 377.0
+Secuencia: [15, 1, 13, 11, 14, 5, 16, 12, 8, 3, 7, 4, 18, 22, 2, 17, 20, 19, 9, 21, 6, 23, 10]
+------------------------------
+
+>>> [10/30] Large_T24_C4 (T:24 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 648.0
+  [Intento 3] ¡Récord! Makespan: 644.0
+  [Intento 4] ¡Récord! Makespan: 643.0
+------------------------------
+RESULTADO FINAL: 643.0
+Secuencia: [24, 1, 12, 18, 4, 13, 15, 16, 23, 5, 11, 22, 6, 21, 10, 3, 14, 20, 8, 19, 2, 7, 9, 17]
+------------------------------
+
+>>> [11/30] Large_T24_C5 (T:24 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 526.0
+  [Intento 2] ¡Récord! Makespan: 524.0
+------------------------------
+RESULTADO FINAL: 524.0
+Secuencia: [11, 5, 24, 1, 16, 14, 8, 20, 9, 19, 2, 12, 23, 10, 18, 21, 3, 4, 22, 17, 13, 6, 15, 7]
+------------------------------
+
+>>> [12/30] Large_T24_C6 (T:24 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 428.0
+------------------------------
+RESULTADO FINAL: 428.0
+Secuencia: [22, 18, 2, 23, 20, 1, 24, 17, 8, 10, 12, 9, 6, 5, 16, 11, 4, 7, 13, 21, 19, 15, 3, 14]
+------------------------------
+
+>>> [13/30] Large_T25_C4 (T:25 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 644.0
+  [Intento 3] ¡Récord! Makespan: 642.0
+  [Intento 4] ¡Récord! Makespan: 638.0
+------------------------------
+RESULTADO FINAL: 638.0
+Secuencia: [25, 17, 2, 18, 9, 21, 3, 11, 10, 12, 7, 22, 20, 23, 14, 5, 8, 24, 1, 19, 6, 4, 15, 16, 13]
+------------------------------
+
+>>> [14/30] Large_T25_C5 (T:25 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 520.0
+  [Intento 2] ¡Récord! Makespan: 512.0
+------------------------------
+RESULTADO FINAL: 512.0
+Secuencia: [23, 15, 2, 24, 6, 16, 1, 25, 8, 5, 20, 21, 9, 17, 22, 7, 18, 3, 13, 19, 11, 14, 12, 4, 10]
+------------------------------
+
+>>> [15/30] Large_T25_C6 (T:25 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 380.0
+------------------------------
+RESULTADO FINAL: 380.0
+Secuencia: [20, 15, 17, 23, 24, 4, 14, 16, 8, 1, 2, 22, 3, 10, 18, 25, 12, 6, 13, 9, 11, 5, 21, 19, 7]
+------------------------------
+
+>>> [16/30] Large_T26_C4 (T:26 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 740.0
+  [Intento 2] ¡Récord! Makespan: 738.0
+------------------------------
+RESULTADO FINAL: 738.0
+Secuencia: [8, 26, 1, 15, 14, 10, 2, 18, 9, 22, 13, 19, 3, 24, 12, 4, 21, 16, 25, 17, 5, 6, 20, 7, 11, 23]
+------------------------------
+
+>>> [17/30] Large_T26_C5 (T:26 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 509.0
+------------------------------
+RESULTADO FINAL: 509.0
+Secuencia: [12, 2, 5, 1, 7, 10, 26, 20, 16, 24, 21, 13, 8, 18, 23, 3, 25, 19, 6, 4, 15, 22, 17, 11, 9, 14]
+------------------------------
+
+>>> [18/30] Large_T26_C6 (T:26 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 462.0
+  [Intento 2] ¡Récord! Makespan: 448.0
+  [Intento 3] ¡Récord! Makespan: 447.0
+------------------------------
+RESULTADO FINAL: 447.0
+Secuencia: [17, 10, 9, 7, 25, 24, 26, 3, 18, 6, 16, 2, 1, 12, 11, 15, 22, 20, 14, 5, 8, 13, 19, 4, 21, 23]
+------------------------------
+
+>>> [19/30] Large_T27_C4 (T:27 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 681.0
+------------------------------
+RESULTADO FINAL: 681.0
+Secuencia: [27, 1, 22, 8, 20, 25, 2, 9, 18, 24, 12, 13, 3, 26, 4, 5, 16, 17, 23, 21, 6, 14, 19, 15, 7, 10, 11]
+------------------------------
+
+>>> [20/30] Large_T27_C5 (T:27 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 611.0
+  [Intento 2] ¡Récord! Makespan: 610.0
+------------------------------
+RESULTADO FINAL: 610.0
+Secuencia: [13, 25, 1, 23, 27, 2, 6, 12, 14, 5, 20, 3, 9, 10, 4, 19, 15, 16, 8, 11, 21, 18, 24, 26, 22, 17, 7]
+------------------------------
+
+>>> [21/30] Large_T27_C6 (T:27 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 464.0
+  [Intento 2] ¡Récord! Makespan: 461.0
+  [Intento 4] ¡Récord! Makespan: 458.0
+------------------------------
+RESULTADO FINAL: 458.0
+Secuencia: [26, 1, 18, 10, 22, 4, 17, 23, 3, 12, 16, 7, 25, 20, 9, 14, 2, 15, 24, 27, 5, 8, 21, 19, 6, 11, 13]
+------------------------------
+
+>>> [22/30] Large_T28_C4 (T:28 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 689.0
+  [Intento 5] ¡Récord! Makespan: 687.0
+------------------------------
+RESULTADO FINAL: 687.0
+Secuencia: [7, 11, 21, 1, 22, 2, 23, 12, 25, 26, 27, 3, 15, 5, 8, 4, 19, 20, 6, 16, 28, 17, 18, 13, 9, 24, 14, 10]
+------------------------------
+
+>>> [23/30] Large_T28_C5 (T:28 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 561.0
+  [Intento 2] ¡Récord! Makespan: 560.0
+------------------------------
+RESULTADO FINAL: 560.0
+Secuencia: [20, 27, 24, 8, 3, 14, 16, 9, 13, 17, 2, 12, 22, 25, 19, 10, 11, 23, 6, 28, 26, 4, 7, 1, 15, 18, 21, 5]
+------------------------------
+
+>>> [24/30] Large_T28_C6 (T:28 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 569.0
+  [Intento 2] ¡Récord! Makespan: 567.0
+  [Intento 3] ¡Récord! Makespan: 565.0
+  [Intento 5] ¡Récord! Makespan: 561.0
+------------------------------
+RESULTADO FINAL: 561.0
+Secuencia: [3, 17, 28, 5, 26, 24, 6, 2, 15, 4, 11, 22, 16, 7, 1, 10, 27, 19, 18, 25, 21, 13, 9, 8, 20, 14, 12, 23]
+------------------------------
+
+>>> [25/30] Large_T29_C4 (T:29 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 739.0
+  [Intento 2] ¡Récord! Makespan: 732.0
+------------------------------
+RESULTADO FINAL: 732.0
+Secuencia: [10, 21, 23, 20, 13, 25, 1, 24, 2, 3, 26, 18, 29, 12, 19, 4, 22, 27, 9, 28, 8, 15, 5, 17, 14, 6, 7, 16, 11]
+------------------------------
+
+>>> [26/30] Large_T29_C5 (T:29 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 629.0
+  [Intento 2] ¡Récord! Makespan: 627.0
+------------------------------
+RESULTADO FINAL: 627.0
+Secuencia: [6, 28, 19, 17, 9, 14, 18, 1, 26, 3, 10, 11, 25, 16, 7, 8, 20, 23, 24, 4, 12, 22, 15, 29, 5, 21, 27, 2, 13]
+------------------------------
+
+>>> [27/30] Large_T29_C6 (T:29 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 585.0
+------------------------------
+RESULTADO FINAL: 585.0
+Secuencia: [20, 16, 17, 19, 10, 1, 9, 26, 28, 29, 5, 3, 11, 2, 22, 21, 23, 25, 8, 13, 27, 7, 12, 14, 18, 24, 15, 4, 6]
+------------------------------
+
+>>> [28/30] Large_T30_C4 (T:30 G:4)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 791.0
+  [Intento 3] ¡Récord! Makespan: 785.0
+------------------------------
+RESULTADO FINAL: 785.0
+Secuencia: [30, 14, 2, 22, 29, 16, 18, 25, 8, 7, 6, 5, 13, 12, 26, 28, 23, 9, 21, 27, 24, 15, 3, 20, 19, 11, 4, 10, 17, 1]
+------------------------------
+
+>>> [29/30] Large_T30_C5 (T:30 G:5)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 681.0
+  [Intento 5] ¡Récord! Makespan: 680.0
+------------------------------
+RESULTADO FINAL: 680.0
+Secuencia: [18, 30, 4, 16, 26, 24, 27, 11, 7, 28, 17, 22, 6, 2, 21, 9, 1, 8, 5, 29, 14, 20, 12, 19, 3, 13, 25, 15, 23, 10]
+------------------------------
+
+>>> [30/30] Large_T30_C6 (T:30 G:6)
+--- Multi-Start: 5 Intentos (GRASP alpha=0.5) ---
+  [Intento 1] ¡Récord! Makespan: 522.0
+  [Intento 2] ¡Récord! Makespan: 514.0
+------------------------------
+RESULTADO FINAL: 514.0
+Secuencia: [11, 17, 28, 16, 9, 1, 29, 5, 26, 8, 6, 25, 12, 3, 2, 30, 21, 13, 7, 24, 27, 22, 20, 10, 23, 19, 4, 18, 14, 15]
+------------------------------
+
+=== FIN DEL LOTE ===
