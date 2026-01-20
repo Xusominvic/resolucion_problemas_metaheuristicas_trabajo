@@ -2,6 +2,7 @@
 import math
 import random
 import copy
+import time
 
 # =========================================================
 # 0. CÁLCULO DE COTAS (NUEVO)
@@ -279,26 +280,54 @@ def variable_neighborhood_search(instance, initial_seq, **kwargs):
 # =========================================================
 
 def multi_start_solver(instance, algorithm_func, n_restarts=5, **kwargs):
-    best_global_makespan = float('inf')
-    best_global_seq = []
+    """
+    Ejecuta el algoritmo 'n_restarts' veces.
+    Devuelve:
+      - best_global_seq: La mejor secuencia encontrada (para validación/dibujo).
+      - avg_makespan: El PROMEDIO de los makespans de los 'n_restarts' intentos.
+      - avg_time: El PROMEDIO del tiempo de cómputo de los 'n_restarts' intentos.
+    """
     
+    init_strategy = kwargs.get('init_strategy', 'grasp')
     alpha = kwargs.get('grasp_alpha', 0.5)
 
-    print(f"--- Multi-Start: {n_restarts} Intentos (GRASP alpha={alpha}) ---")
+    # Listas para guardar los resultados de cada uno de los 5 intentos
+    results_makespan = []
+    results_time = []
+    
+    best_global_makespan = float('inf')
+    best_global_seq = []
+
+    # print(f"--- Multi-Start: {n_restarts} Intentos (Init: {init_strategy.upper()}) ---")
 
     for i in range(n_restarts):
-        # 1. Construcción (GRASP)
-        # Pequeña variación de alpha para dar robustez si es estático
-        current_alpha = alpha if isinstance(alpha, float) else random.uniform(0.1, 0.9)
-        initial_sol = construct_grasp_solution(instance, alpha=current_alpha)
+        start_t = time.time()
+        
+        # 1. Construcción
+        if init_strategy == 'random':
+            initial_sol = [t.id for t in instance.tasks]
+            random.shuffle(initial_sol)
+        else:
+            current_alpha = alpha if isinstance(alpha, float) else random.uniform(0.1, 0.9)
+            initial_sol = construct_grasp_solution(instance, alpha=current_alpha)
         
         # 2. Mejora (VNS + Tabu)
         sol, val, _ = algorithm_func(instance, initial_sol, **kwargs)
         
-        # 3. Actualizar Global
+        end_t = time.time()
+        elapsed = end_t - start_t
+        
+        # Guardamos métricas de ESTE intento
+        results_makespan.append(val)
+        results_time.append(elapsed)
+
+        # Actualizamos el "Mejor Histórico" solo para devolver una secuencia válida
         if val < best_global_makespan:
             best_global_makespan = val
             best_global_seq = sol[:]
-            print(f"  [Intento {i+1}] ¡Récord! Makespan: {val}")
 
-    return best_global_seq, best_global_makespan
+    # CÁLCULO DE MEDIAS (Requisito del Paper)
+    avg_makespan = sum(results_makespan) / len(results_makespan)
+    avg_time = sum(results_time) / len(results_time)
+
+    return best_global_seq, avg_makespan, avg_time
