@@ -130,22 +130,25 @@ def get_neighbor(sequence, method="random"):
 
 
 # =========================================================
-# 3. CONSTRUCTOR GRASP
+# 3. CONSTRUCTOR GRASP Y RANDOM
 # =========================================================
 
+def construct_random_solution(instance):
+    """
+    Genera una solución inicial aleatoria (permutación simple).
+    """
+    seq = [t.id for t in instance.tasks]
+    random.shuffle(seq)
+    return seq
+
 def construct_grasp_solution(instance, alpha=0.5):
-    """
-    Genera solución inicial: Greedy Randomized Adaptive Search Procedure.
-    """
+    # ... [MANTENER EL CÓDIGO DE GRASP IGUAL QUE ANTES] ...
     candidates = [t for t in instance.tasks]
     solution_seq = []
-    
-    # Estado virtual simplificado de grúas
     crane_states = {c.id: {'loc': c.location, 'time': 0.0} for c in instance.cranes}
 
     while candidates:
         scored_candidates = []
-        # Evaluar coste (Earliest Finish Time)
         for task in candidates:
             best_finish = float('inf')
             best_crane = -1
@@ -156,27 +159,21 @@ def construct_grasp_solution(instance, alpha=0.5):
                 if finish < best_finish:
                     best_finish = finish
                     best_crane = c_id
-            
             scored_candidates.append({'task': task, 'cost': best_finish, 'crane': best_crane})
 
-        # Construir RCL
         costs = [x['cost'] for x in scored_candidates]
         min_c, max_c = min(costs), max(costs)
         threshold = min_c + alpha * (max_c - min_c)
         rcl = [x for x in scored_candidates if x['cost'] <= threshold]
         
-        # Selección
         selection = random.choice(rcl)
         task = selection['task']
-        
-        # Actualizar
         solution_seq.append(task.id)
         candidates.remove(task)
         crane_states[selection['crane']]['loc'] = task.location
         crane_states[selection['crane']]['time'] = selection['cost']
         
     return solution_seq
-
 
 # =========================================================
 # 4. ALGORITMOS (Tabu & VNS)
@@ -282,32 +279,42 @@ def variable_neighborhood_search(instance, initial_seq, **kwargs):
 def multi_start_solver(instance, algorithm_func, n_restarts=5, **kwargs):
     """
     Ejecuta el algoritmo 'n_restarts' veces.
-    Devuelve:
-      - best_global_seq: La mejor secuencia encontrada (para validación/dibujo).
-      - avg_makespan: El PROMEDIO de los makespans de los 'n_restarts' intentos.
-      - avg_time: El PROMEDIO del tiempo de cómputo de los 'n_restarts' intentos.
+    Soporta init_strategy: 
+        - 'grasp': Construcción inteligente.
+        - 'random': Genera 'pool_size' aleatorias y elige la mejor (Best of SN).
     """
     
     init_strategy = kwargs.get('init_strategy', 'grasp')
     alpha = kwargs.get('grasp_alpha', 0.5)
+    pool_size = kwargs.get('pool_size', 1) # SN (Swarm Number) para Random
 
-    # Listas para guardar los resultados de cada uno de los 5 intentos
     results_makespan = []
     results_time = []
     
     best_global_makespan = float('inf')
     best_global_seq = []
 
-    # print(f"--- Multi-Start: {n_restarts} Intentos (Init: {init_strategy.upper()}) ---")
-
     for i in range(n_restarts):
         start_t = time.time()
         
         # 1. Construcción
         if init_strategy == 'random':
-            initial_sol = [t.id for t in instance.tasks]
-            random.shuffle(initial_sol)
-        else:
+            # ESTRATEGIA: Best of SN (Población Aleatoria)
+            best_rand_sol = None
+            best_rand_val = float('inf')
+            
+            # Generamos 'pool_size' soluciones y nos quedamos la mejor
+            for _ in range(pool_size):
+                cand = construct_random_solution(instance)
+                val = calculate_makespan(instance, cand)
+                if val < best_rand_val:
+                    best_rand_val = val
+                    best_rand_sol = cand[:]
+            
+            initial_sol = best_rand_sol
+            
+        else: 
+            # ESTRATEGIA: GRASP
             current_alpha = alpha if isinstance(alpha, float) else random.uniform(0.1, 0.9)
             initial_sol = construct_grasp_solution(instance, alpha=current_alpha)
         
@@ -317,16 +324,13 @@ def multi_start_solver(instance, algorithm_func, n_restarts=5, **kwargs):
         end_t = time.time()
         elapsed = end_t - start_t
         
-        # Guardamos métricas de ESTE intento
         results_makespan.append(val)
         results_time.append(elapsed)
 
-        # Actualizamos el "Mejor Histórico" solo para devolver una secuencia válida
         if val < best_global_makespan:
             best_global_makespan = val
             best_global_seq = sol[:]
 
-    # CÁLCULO DE MEDIAS (Requisito del Paper)
     avg_makespan = sum(results_makespan) / len(results_makespan)
     avg_time = sum(results_time) / len(results_time)
 
