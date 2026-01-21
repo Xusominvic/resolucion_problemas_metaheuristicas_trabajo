@@ -36,10 +36,14 @@ def main():
     
     if args.size == 'small':
         min_p, max_p = 20, 150
-        benchmarks = [(10, 2), (12, 2), (12, 3)]
+        tasks_list = [6, 7, 8, 9, 10, 11]
+        cranes_list = [2, 3]
+        benchmarks = [(t, c) for t in tasks_list for c in cranes_list]
     elif args.size == 'medium':
         min_p, max_p = 30, 180
-        benchmarks = [(15, 2), (15, 3), (20, 2), (20, 3)]
+        tasks_list = [15, 16, 17, 18, 19, 20]
+        cranes_list = [2, 3, 4]
+        benchmarks = [(t, c) for t in tasks_list for c in cranes_list]
     elif args.size == 'large':
         min_p, max_p = 30, 180
         tasks_list = [30, 40, 50, 60, 70]
