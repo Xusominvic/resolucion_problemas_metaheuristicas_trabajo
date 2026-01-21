@@ -1,0 +1,51 @@
+{
+    "name": "small_6x3_6",
+    "num_tasks": 6,
+    "num_cranes": 3,
+    "tasks": [
+        {
+            "id": 1,
+            "location": 1,
+            "p_0": 114
+        },
+        {
+            "id": 2,
+            "location": 2,
+            "p_0": 118
+        },
+        {
+            "id": 3,
+            "location": 3,
+            "p_0": 75
+        },
+        {
+            "id": 4,
+            "location": 4,
+            "p_0": 94
+        },
+        {
+            "id": 5,
+            "location": 5,
+            "p_0": 144
+        },
+        {
+            "id": 6,
+            "location": 6,
+            "p_0": 88
+        }
+    ],
+    "cranes": [
+        {
+            "id": 1,
+            "location": 1
+        },
+        {
+            "id": 2,
+            "location": 4
+        },
+        {
+            "id": 3,
+            "location": 6
+        }
+    ]
+}

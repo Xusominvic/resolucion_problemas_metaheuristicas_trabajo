@@ -1,0 +1,101 @@
+{
+    "name": "medium_16x3_3",
+    "num_tasks": 16,
+    "num_cranes": 3,
+    "tasks": [
+        {
+            "id": 1,
+            "location": 1,
+            "p_0": 34
+        },
+        {
+            "id": 2,
+            "location": 2,
+            "p_0": 104
+        },
+        {
+            "id": 3,
+            "location": 3,
+            "p_0": 123
+        },
+        {
+            "id": 4,
+            "location": 4,
+            "p_0": 91
+        },
+        {
+            "id": 5,
+            "location": 5,
+            "p_0": 103
+        },
+        {
+            "id": 6,
+            "location": 6,
+            "p_0": 39
+        },
+        {
+            "id": 7,
+            "location": 7,
+            "p_0": 166
+        },
+        {
+            "id": 8,
+            "location": 8,
+            "p_0": 100
+        },
+        {
+            "id": 9,
+            "location": 9,
+            "p_0": 80
+        },
+        {
+            "id": 10,
+            "location": 10,
+            "p_0": 80
+        },
+        {
+            "id": 11,
+            "location": 11,
+            "p_0": 35
+        },
+        {
+            "id": 12,
+            "location": 12,
+            "p_0": 43
+        },
+        {
+            "id": 13,
+            "location": 13,
+            "p_0": 103
+        },
+        {
+            "id": 14,
+            "location": 14,
+            "p_0": 103
+        },
+        {
+            "id": 15,
+            "location": 15,
+            "p_0": 79
+        },
+        {
+            "id": 16,
+            "location": 16,
+            "p_0": 96
+        }
+    ],
+    "cranes": [
+        {
+            "id": 1,
+            "location": 1
+        },
+        {
+            "id": 2,
+            "location": 8
+        },
+        {
+            "id": 3,
+            "location": 16
+        }
+    ]
+}

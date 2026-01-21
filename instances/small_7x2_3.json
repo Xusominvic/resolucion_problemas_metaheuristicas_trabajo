@@ -1,0 +1,52 @@
+{
+    "name": "small_7x2_3",
+    "num_tasks": 7,
+    "num_cranes": 2,
+    "tasks": [
+        {
+            "id": 1,
+            "location": 1,
+            "p_0": 56
+        },
+        {
+            "id": 2,
+            "location": 2,
+            "p_0": 109
+        },
+        {
+            "id": 3,
+            "location": 3,
+            "p_0": 73
+        },
+        {
+            "id": 4,
+            "location": 4,
+            "p_0": 62
+        },
+        {
+            "id": 5,
+            "location": 5,
+            "p_0": 121
+        },
+        {
+            "id": 6,
+            "location": 6,
+            "p_0": 138
+        },
+        {
+            "id": 7,
+            "location": 7,
+            "p_0": 52
+        }
+    ],
+    "cranes": [
+        {
+            "id": 1,
+            "location": 1
+        },
+        {
+            "id": 2,
+            "location": 7
+        }
+    ]
+}

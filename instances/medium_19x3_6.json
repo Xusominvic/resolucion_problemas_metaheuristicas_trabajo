@@ -1,0 +1,116 @@
+{
+    "name": "medium_19x3_6",
+    "num_tasks": 19,
+    "num_cranes": 3,
+    "tasks": [
+        {
+            "id": 1,
+            "location": 1,
+            "p_0": 180
+        },
+        {
+            "id": 2,
+            "location": 2,
+            "p_0": 168
+        },
+        {
+            "id": 3,
+            "location": 3,
+            "p_0": 104
+        },
+        {
+            "id": 4,
+            "location": 4,
+            "p_0": 66
+        },
+        {
+            "id": 5,
+            "location": 5,
+            "p_0": 132
+        },
+        {
+            "id": 6,
+            "location": 6,
+            "p_0": 162
+        },
+        {
+            "id": 7,
+            "location": 7,
+            "p_0": 78
+        },
+        {
+            "id": 8,
+            "location": 8,
+            "p_0": 31
+        },
+        {
+            "id": 9,
+            "location": 9,
+            "p_0": 175
+        },
+        {
+            "id": 10,
+            "location": 10,
+            "p_0": 148
+        },
+        {
+            "id": 11,
+            "location": 11,
+            "p_0": 108
+        },
+        {
+            "id": 12,
+            "location": 12,
+            "p_0": 114
+        },
+        {
+            "id": 13,
+            "location": 13,
+            "p_0": 161
+        },
+        {
+            "id": 14,
+            "location": 14,
+            "p_0": 112
+        },
+        {
+            "id": 15,
+            "location": 15,
+            "p_0": 125
+        },
+        {
+            "id": 16,
+            "location": 16,
+            "p_0": 75
+        },
+        {
+            "id": 17,
+            "location": 17,
+            "p_0": 98
+        },
+        {
+            "id": 18,
+            "location": 18,
+            "p_0": 33
+        },
+        {
+            "id": 19,
+            "location": 19,
+            "p_0": 107
+        }
+    ],
+    "cranes": [
+        {
+            "id": 1,
+            "location": 1
+        },
+        {
+            "id": 2,
+            "location": 10
+        },
+        {
+            "id": 3,
+            "location": 19
+        }
+    ]
+}

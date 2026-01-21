@@ -1,0 +1,77 @@
+{
+    "name": "small_12x2_1",
+    "num_tasks": 12,
+    "num_cranes": 2,
+    "tasks": [
+        {
+            "id": 1,
+            "location": 1,
+            "p_0": 60
+        },
+        {
+            "id": 2,
+            "location": 2,
+            "p_0": 52
+        },
+        {
+            "id": 3,
+            "location": 3,
+            "p_0": 102
+        },
+        {
+            "id": 4,
+            "location": 4,
+            "p_0": 87
+        },
+        {
+            "id": 5,
+            "location": 5,
+            "p_0": 68
+        },
+        {
+            "id": 6,
+            "location": 6,
+            "p_0": 129
+        },
+        {
+            "id": 7,
+            "location": 7,
+            "p_0": 76
+        },
+        {
+            "id": 8,
+            "location": 8,
+            "p_0": 131
+        },
+        {
+            "id": 9,
+            "location": 9,
+            "p_0": 83
+        },
+        {
+            "id": 10,
+            "location": 10,
+            "p_0": 150
+        },
+        {
+            "id": 11,
+            "location": 11,
+            "p_0": 66
+        },
+        {
+            "id": 12,
+            "location": 12,
+            "p_0": 31
+        }
+    ],
+    "cranes": [
+        {
+            "id": 1,
+            "location": 1
+        },
+        {
+            "id": 2,
+            "location": 12
+        }
+    ]
+}
