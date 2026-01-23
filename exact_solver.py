@@ -2,146 +2,168 @@ import pulp
 import time
 import argparse
 import glob
-import os
+import sys
+import math
+from collections import defaultdict
 from src.io_handler import load_instance_from_json
 
 def solve_exact_pulp(instance, time_limit_sec=1200):
-    """
-    Resuelve la instancia usando programación lineal entera (CBC Solver).
-    Retorna (Makespan, Tiempo_Transcurrido).
-    Si falla o excede el tiempo, retorna (None, Tiempo_Transcurrido).
-    """
     tasks = instance.tasks
     cranes = instance.cranes
+    num_cranes = len(cranes)
     
-    # Big-M: Valor suficientemente grande para relajar restricciones
-    # (Suma de tiempos * 2 suele ser seguro)
-    BigM = sum(t.p_0 for t in tasks) * 2
+    # Pre-cálculos para Cotas
+    total_processing_time = sum(t.p_0 for t in tasks)
+    max_processing_time = max(t.p_0 for t in tasks)
+    
+    # Big-M: Usamos la suma total como horizonte seguro
+    BigM = total_processing_time
 
-    print(f"  -> Construyendo modelo para {instance.name} (T={len(tasks)}, G={len(cranes)})...")
-
-    # --- 1. MODELO ---
+    # 1. Definir Problema
     prob = pulp.LpProblem("GCSP_Exact", pulp.LpMinimize)
 
-    # Variables
-    # x[i,k] = 1 si tarea i la hace grúa k
+    # 2. Variables
     x = pulp.LpVariable.dicts("x", 
-                                ((t.id, c.id) for t in tasks for c in cranes), 
-                                cat='Binary')
+                              ((t.id, c.id) for t in tasks for c in cranes), 
+                              cat='Binary')
     
-    # S[i] = Tiempo inicio tarea i
-    S = pulp.LpVariable.dicts("S", (t.id for t in tasks), lowBound=0, cat='Continuous')
+    S = pulp.LpVariable.dicts("S", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
+    C = pulp.LpVariable.dicts("C", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
+    Cmax = pulp.LpVariable("Cmax", lowBound=0, upBound=BigM, cat='Continuous')
     
-    # C[i] = Tiempo fin tarea i
-    C = pulp.LpVariable.dicts("C", (t.id for t in tasks), lowBound=0, cat='Continuous')
-    
-    # Cmax = Makespan
-    Cmax = pulp.LpVariable("Cmax", lowBound=0, cat='Continuous')
-    
-    # Ordenamiento y[i,j] = 1 si i precede a j.
-    # Optimizacion: Solo crear variables para pares i < j que podrían chocar
-    y = pulp.LpVariable.dicts("y", 
-                                ((t1.id, t2.id) for t1 in tasks for t2 in tasks if t1.id < t2.id),
-                                cat='Binary')
+    # Variables de ordenamiento (solo para pares i < j)
+    pair_keys = [(t1.id, t2.id) for t1 in tasks for t2 in tasks if t1.id < t2.id]
+    y = pulp.LpVariable.dicts("y", pair_keys, cat='Binary')
 
-    # --- 2. FUNCIÓN OBJETIVO ---
+    # 3. Función Objetivo
     prob += Cmax
 
-    # --- 3. RESTRICCIONES ---
+    # --- 4. OPTIMIZACIÓN: COTAS INFERIORES (Cortes) ---
+    # Esto ayuda al solver a descartar soluciones imposibles rápido
     
-    # R1: Asignación Única
+    # A. Cota de Capacidad: Cmax >= (Suma total) / num_gruas
+    prob += Cmax >= total_processing_time / num_cranes
+    
+    # B. Cota de Tarea Máxima: Cmax >= Tarea más larga
+    prob += Cmax >= max_processing_time
+
+    # C. Cota Suma Asignada (Cut local): La suma de lo asignado a UNA grúa <= Cmax
+    for c in cranes:
+        prob += pulp.lpSum(t.p_0 * x[t.id, c.id] for t in tasks) <= Cmax
+
+    # 5. Restricciones Estructurales
+    
+    # R1: Cada tarea asignada a EXACTAMENTE una grúa
     for t in tasks:
         prob += pulp.lpSum(x[t.id, c.id] for c in cranes) == 1
 
-    # R2: Definición de Tiempos (C = S + p) y Cmax
+    # R2: Definición de Tiempos
     for t in tasks:
         prob += C[t.id] == S[t.id] + t.p_0
         prob += Cmax >= C[t.id]
 
-    # R3: No solapamiento en la misma grúa (Disyuntiva Big-M)
+    # R3: Secuenciación en la misma grúa (Disyuntiva Big-M)
     for c in cranes:
-        for t1 in tasks:
-            for t2 in tasks:
-                if t1.id >= t2.id: continue # Solo procesar i < j una vez
-                
-                # RESTRICCIÓN CLAVE:
-                # Si ambas tareas (t1 y t2) las hace la grúa 'c', no pueden solaparse.
-                # Se usa Big-M para que la restricción solo aplique si x[t1,c]=1 Y x[t2,c]=1
-                
-                # Caso A (y=1 -> t1 antes que t2): S[t2] >= C[t1]
-                # Activado solo si x[t1,c] + x[t2,c] = 2. Si no, el término (3 - ...) se hace grande y lo anula.
-                prob += S[t2.id] >= C[t1.id] - BigM * (3 - x[t1.id,c.id] - x[t2.id,c.id] - y[t1.id,t2.id])
-                
-                # Caso B (y=0 -> t2 antes que t1): S[t1] >= C[t2]
-                prob += S[t1.id] >= C[t2.id] - BigM * (2 - x[t1.id,c.id] - x[t2.id,c.id] + y[t1.id,t2.id])
+        for (t1_id, t2_id) in pair_keys:
+            # Si x1=1 y x2=1 en la misma grúa, activar restricción de orden
+            
+            # Caso y=1 (t1 antes t2): S[t2] >= C[t1]
+            prob += S[t2_id] >= C[t1_id] - BigM * (3 - x[t1_id,c.id] - x[t2_id,c.id] - y[t1_id,t2_id])
 
-    # --- 4. RESOLUCIÓN ---
-    # msg=False para no ensuciar la salida, timeLimit define el corte
+            # Caso y=0 (t2 antes t1): S[t1] >= C[t2]
+            prob += S[t1_id] >= C[t2_id] - BigM * (2 - x[t1_id,c.id] - x[t2_id,c.id] + y[t1_id,t2_id])
+
+    # 6. Resolución
+    # msg=False reduce el ruido en consola, ponlo True si quieres ver el log
     solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=time_limit_sec)
     
     start_time = time.time()
     try:
         prob.solve(solver)
     except Exception as e:
-        print(f"  Error Solver: {e}")
-        elapsed = time.time() - start_time
-        return None, elapsed
+        return None, 0
 
     elapsed = time.time() - start_time
     status = pulp.LpStatus[prob.status]
     
-    # Verificar éxito
     if status == 'Optimal' or (status == 'Feasible' and elapsed < time_limit_sec):
         return pulp.value(Cmax), elapsed
     else:
-        # Timeout o Infeasible
         return None, elapsed
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Solver Exacto (PuLP/CBC) para GCSP")
-    
-    parser.add_argument('--size', type=str, choices=['small', 'medium', 'large'], required=True, 
-                        help="Conjunto de instancias a resolver.")
-    
-    parser.add_argument('--timeout', type=int, default=1200, 
-                        help="Tiempo límite en segundos (Default: 1200s = 20min).")
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--size', type=str, required=True, choices=['small', 'medium', 'large'])
+    parser.add_argument('--timeout', type=int, default=1200)
     args = parser.parse_args()
 
-    # 1. Buscar archivos JSON
-    search_pattern = f"instances/{args.size}_*.json"
-    files = sorted(glob.glob(search_pattern))
-    
+    files = sorted(glob.glob(f"instances/{args.size}_*.json"))
     if not files:
-        print(f"ERROR: No se encontraron instancias en '{search_pattern}'.")
-        print("Ejecuta primero: python generate_dataset.py")
-        exit()
+        print("Error: No hay archivos JSON. Ejecuta generate_dataset.py")
+        sys.exit()
 
-    print(f"\n=== SOLVER EXACTO (PuLP) | SIZE: {args.size.upper()} | Timeout: {args.timeout}s ===")
-    print("-" * 90)
-    print(f"{'Instancia':<25} | {'Makespan':<12} | {'Tiempo (s)':<12} | {'Estado':<15}")
-    print("-" * 90)
+    print(f"\n=== EJECUTANDO MÉTODO EXACTO (AGREGADO) | SIZE: {args.size} ===")
+    print(f"Progreso en tiempo real (Paciencia para instancias densas como 10x3)...")
+    print("-" * 60)
+    print(f"{'Instancia':<20} | {'MK':<10} | {'Time (s)':<10}")
+    print("-" * 60)
     
-    total_solved = 0
+    # Estructura para agrupar resultados: results[(n_tasks, n_cranes)] = [list of (mk, time)]
+    results_agg = defaultdict(list)
     
-    # 2. Recorrer TODOS los archivos
+    # Contadores globales
+    total_instances = len(files)
+    processed = 0
+
     for filepath in files:
         inst = load_instance_from_json(filepath)
         
-        # Llamar al solver con el timeout
-        mk, elapsed = solve_exact_pulp(inst, time_limit_sec=args.timeout)
+        # Resolver
+        mk, t = solve_exact_pulp(inst, args.timeout)
         
-        # Preparar datos para imprimir
+        processed += 1
+        
+        # Mostrar progreso individual (para que sepas que no se ha colgado)
+        mk_str = f"{mk:.1f}" if mk is not None else "TIMEOUT"
+        print(f"[{processed}/{total_instances}] {inst.name:<20} | {mk_str:<10} | {t:<10.2f}")
+        
+        # Guardar para la media (solo si se resolvió)
+        key = (len(inst.tasks), len(inst.cranes))
+        
         if mk is not None:
-            mk_str = f"{mk:.1f}"
-            status_str = "Optimal"
-            total_solved += 1
+            results_agg[key].append((mk, t))
         else:
-            mk_str = "-"
-            status_str = "TIMEOUT (>20m)"
-            
-        print(f"{inst.name:<25} | {mk_str:<12} | {elapsed:<12.2f} | {status_str:<15}")
+            # Si hace timeout, decidimos si guardarlo como None o penalizar
+            # Para la tabla, lo marcamos como no resuelto
+            results_agg[key].append((None, t))
 
-    print("-" * 90)
-    print(f"Resueltas: {total_solved}/{len(files)}")
-    print("=== FIN DEL PROCESO EXACTO ===")
+    # --- TABLA FINAL DE MEDIAS ---
+    print("\n" + "="*80)
+    print(f"RESUMEN FINAL (MEDIAS) - COPIAR AL PAPER")
+    print("="*80)
+    print(f"{'Tamaño (NxM)':<15} | {'Instancias':<10} | {'Avg Makespan':<15} | {'Avg Time (s)':<15} | {'Resueltas':<10}")
+    print("-" * 80)
+
+    # Ordenar por número de tareas y luego grúas
+    sorted_keys = sorted(results_agg.keys(), key=lambda x: (x[0], x[1]))
+
+    for (n_tasks, n_cranes) in sorted_keys:
+        data = results_agg[(n_tasks, n_cranes)]
+        
+        # Filtrar solo las resueltas para el promedio de MK
+        solved_data = [d for d in data if d[0] is not None]
+        num_total = len(data)
+        num_solved = len(solved_data)
+        
+        if num_solved > 0:
+            avg_mk = sum(d[0] for d in solved_data) / num_solved
+            # El tiempo promedio solemos quererlo de TODAS (incluso las que gastaron 1200s y fallaron)
+            # O solo de las resueltas. Normalmente: promedio de las resueltas.
+            avg_time = sum(d[1] for d in solved_data) / num_solved
+            
+            print(f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {avg_mk:<15.2f} | {avg_time:<15.2f} | {num_solved}/{num_total}")
+        else:
+            # Caso donde fallaron todas (TIMEOUT)
+            print(f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {'-':<15} | {'> 1200':<15} | 0/{num_total}")
+            
+    print("="*80)

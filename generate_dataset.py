@@ -2,7 +2,7 @@ import random
 from src.problem import Task, Crane, GCSP_Instance, get_equidistant_positions
 from src.io_handler import save_instance_to_json
 
-def generate_batch(size_label, tasks_list, cranes_list, min_p, max_p, num_instances=6):
+def generate_batch(size_label, tasks_list, cranes_list, min_p, max_p, num_instances=5):
     print(f"--- Generando dataset: {size_label} ---")
     
     # Combinatoria de tareas y grúas
