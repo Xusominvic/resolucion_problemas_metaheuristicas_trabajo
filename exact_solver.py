@@ -3,9 +3,24 @@ import time
 import argparse
 import glob
 import sys
-import math
+import os
+import re
 from collections import defaultdict
 from src.io_handler import load_instance_from_json
+
+# --- FUNCIÓN DE ORDENACIÓN ---
+def get_sort_key(filepath):
+    """
+    Extrae los números del nombre del archivo para ordenar correctamente.
+    Ejemplo: 'instances/small_6x2_1.json' -> (6, 2, 1)
+    """
+    filename = os.path.basename(filepath)
+    # Busca todos los grupos de dígitos en el nombre
+    numbers = re.findall(r'\d+', filename)
+    if len(numbers) >= 3:
+        # Retorna tupla (NumTareas, NumGruas, ID_Instancia)
+        return int(numbers[0]), int(numbers[1]), int(numbers[2])
+    return 0, 0, 0
 
 def solve_exact_pulp(instance, time_limit_sec=1200):
     tasks = instance.tasks
@@ -16,7 +31,7 @@ def solve_exact_pulp(instance, time_limit_sec=1200):
     total_processing_time = sum(t.p_0 for t in tasks)
     max_processing_time = max(t.p_0 for t in tasks)
     
-    # Big-M: Usamos la suma total como horizonte seguro
+    # Big-M ajustado (Horizonte seguro)
     BigM = total_processing_time
 
     # 1. Definir Problema
@@ -38,22 +53,17 @@ def solve_exact_pulp(instance, time_limit_sec=1200):
     # 3. Función Objetivo
     prob += Cmax
 
-    # --- 4. OPTIMIZACIÓN: COTAS INFERIORES (Cortes) ---
-    # Esto ayuda al solver a descartar soluciones imposibles rápido
-    
-    # A. Cota de Capacidad: Cmax >= (Suma total) / num_gruas
+    # --- 4. OPTIMIZACIÓN (CORTES) ---
+    # Cota de Capacidad
     prob += Cmax >= total_processing_time / num_cranes
-    
-    # B. Cota de Tarea Máxima: Cmax >= Tarea más larga
+    # Cota de Tarea Máxima
     prob += Cmax >= max_processing_time
-
-    # C. Cota Suma Asignada (Cut local): La suma de lo asignado a UNA grúa <= Cmax
+    # Cota Suma Asignada
     for c in cranes:
         prob += pulp.lpSum(t.p_0 * x[t.id, c.id] for t in tasks) <= Cmax
 
     # 5. Restricciones Estructurales
-    
-    # R1: Cada tarea asignada a EXACTAMENTE una grúa
+    # R1: Cada tarea asignada a una grúa
     for t in tasks:
         prob += pulp.lpSum(x[t.id, c.id] for c in cranes) == 1
 
@@ -62,19 +72,15 @@ def solve_exact_pulp(instance, time_limit_sec=1200):
         prob += C[t.id] == S[t.id] + t.p_0
         prob += Cmax >= C[t.id]
 
-    # R3: Secuenciación en la misma grúa (Disyuntiva Big-M)
+    # R3: Secuenciación (Big-M)
     for c in cranes:
         for (t1_id, t2_id) in pair_keys:
-            # Si x1=1 y x2=1 en la misma grúa, activar restricción de orden
-            
-            # Caso y=1 (t1 antes t2): S[t2] >= C[t1]
+            # Caso y=1 (t1 antes t2)
             prob += S[t2_id] >= C[t1_id] - BigM * (3 - x[t1_id,c.id] - x[t2_id,c.id] - y[t1_id,t2_id])
-
-            # Caso y=0 (t2 antes t1): S[t1] >= C[t2]
+            # Caso y=0 (t2 antes t1)
             prob += S[t1_id] >= C[t2_id] - BigM * (2 - x[t1_id,c.id] - x[t2_id,c.id] + y[t1_id,t2_id])
 
     # 6. Resolución
-    # msg=False reduce el ruido en consola, ponlo True si quieres ver el log
     solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=time_limit_sec)
     
     start_time = time.time()
@@ -97,73 +103,79 @@ if __name__ == "__main__":
     parser.add_argument('--timeout', type=int, default=1200)
     args = parser.parse_args()
 
-    files = sorted(glob.glob(f"instances/{args.size}_*.json"))
+    # 1. Buscar archivos
+    search_pattern = f"instances/{args.size}_*.json"
+    files = glob.glob(search_pattern)
+    
     if not files:
-        print("Error: No hay archivos JSON. Ejecuta generate_dataset.py")
+        print(f"Error: No se encontraron archivos con el patrón '{search_pattern}'.")
+        print("Asegúrate de haber ejecutado 'generate_dataset.py' primero.")
         sys.exit()
 
-    print(f"\n=== EJECUTANDO MÉTODO EXACTO (AGREGADO) | SIZE: {args.size} ===")
-    print(f"Progreso en tiempo real (Paciencia para instancias densas como 10x3)...")
-    print("-" * 60)
-    print(f"{'Instancia':<20} | {'MK':<10} | {'Time (s)':<10}")
-    print("-" * 60)
-    
-    # Estructura para agrupar resultados: results[(n_tasks, n_cranes)] = [list of (mk, time)]
-    results_agg = defaultdict(list)
-    
-    # Contadores globales
-    total_instances = len(files)
-    processed = 0
+    # 2. ORDENAR CORRECTAMENTE (Numérico)
+    files.sort(key=get_sort_key)
 
+    output_file = f"resultados_exactos_{args.size}.txt"
+    
+    print(f"\n=== MÉTODO EXACTO (PuLP) | SIZE: {args.size} | Total Archivos: {len(files)} ===")
+    print(f"Guardando resultados en: {output_file}")
+    print("-" * 65)
+    print(f"{'Instancia':<25} | {'Makespan':<10} | {'Time (s)':<10} | {'Status':<10}")
+    print("-" * 65)
+    
+    # Estructura para agrupar resultados: results[(n_tasks, n_cranes)] = list of (mk, time)
+    results_agg = defaultdict(list)
+    processed_count = 0
+
+    # 3. Procesar Instancias
     for filepath in files:
         inst = load_instance_from_json(filepath)
         
         # Resolver
         mk, t = solve_exact_pulp(inst, args.timeout)
         
-        processed += 1
+        processed_count += 1
         
-        # Mostrar progreso individual (para que sepas que no se ha colgado)
-        mk_str = f"{mk:.1f}" if mk is not None else "TIMEOUT"
-        print(f"[{processed}/{total_instances}] {inst.name:<20} | {mk_str:<10} | {t:<10.2f}")
+        status_str = "OK" if mk is not None else "TIMEOUT"
+        mk_str = f"{mk:.1f}" if mk is not None else "-"
         
-        # Guardar para la media (solo si se resolvió)
+        # Imprimir progreso en consola
+        print(f"[{processed_count}/{len(files)}] {inst.name:<22} | {mk_str:<10} | {t:<10.2f} | {status_str}")
+        
+        # Guardar datos
         key = (len(inst.tasks), len(inst.cranes))
-        
-        if mk is not None:
-            results_agg[key].append((mk, t))
-        else:
-            # Si hace timeout, decidimos si guardarlo como None o penalizar
-            # Para la tabla, lo marcamos como no resuelto
-            results_agg[key].append((None, t))
+        results_agg[key].append((mk, t))
 
-    # --- TABLA FINAL DE MEDIAS ---
-    print("\n" + "="*80)
-    print(f"RESUMEN FINAL (MEDIAS) - COPIAR AL PAPER")
-    print("="*80)
-    print(f"{'Tamaño (NxM)':<15} | {'Instancias':<10} | {'Avg Makespan':<15} | {'Avg Time (s)':<15} | {'Resueltas':<10}")
-    print("-" * 80)
+    # --- GENERAR INFORME FINAL (TXT) ---
+    with open(output_file, "w") as f:
+        header = f"RESUMEN RESULTADOS EXACTOS - {args.size.upper()}\n"
+        f.write("=" * 80 + "\n")
+        f.write(header)
+        f.write("=" * 80 + "\n")
+        f.write(f"{'Tamaño (NxM)':<15} | {'Muestras':<10} | {'AVG Makespan':<15} | {'AVG Time (s)':<15}\n")
+        f.write("-" * 80 + "\n")
 
-    # Ordenar por número de tareas y luego grúas
-    sorted_keys = sorted(results_agg.keys(), key=lambda x: (x[0], x[1]))
+        # Ordenar claves para el TXT
+        sorted_keys = sorted(results_agg.keys(), key=lambda x: (x[0], x[1]))
 
-    for (n_tasks, n_cranes) in sorted_keys:
-        data = results_agg[(n_tasks, n_cranes)]
-        
-        # Filtrar solo las resueltas para el promedio de MK
-        solved_data = [d for d in data if d[0] is not None]
-        num_total = len(data)
-        num_solved = len(solved_data)
-        
-        if num_solved > 0:
-            avg_mk = sum(d[0] for d in solved_data) / num_solved
-            # El tiempo promedio solemos quererlo de TODAS (incluso las que gastaron 1200s y fallaron)
-            # O solo de las resueltas. Normalmente: promedio de las resueltas.
-            avg_time = sum(d[1] for d in solved_data) / num_solved
+        for (n_tasks, n_cranes) in sorted_keys:
+            data = results_agg[(n_tasks, n_cranes)]
             
-            print(f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {avg_mk:<15.2f} | {avg_time:<15.2f} | {num_solved}/{num_total}")
-        else:
-            # Caso donde fallaron todas (TIMEOUT)
-            print(f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {'-':<15} | {'> 1200':<15} | 0/{num_total}")
+            # Filtrar solo resueltas para el Makespan
+            solved_data = [d for d in data if d[0] is not None]
+            num_total = len(data)
+            num_solved = len(solved_data)
             
-    print("="*80)
+            if num_solved > 0:
+                avg_mk = sum(d[0] for d in solved_data) / num_solved
+                avg_time = sum(d[1] for d in solved_data) / num_solved
+                line = f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {avg_mk:<15.2f} | {avg_time:<15.2f}\n"
+            else:
+                line = f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {'TIMEOUT':<15} | {'> LIMIT':<15}\n"
+            
+            f.write(line)
+            # Imprimir también en consola el resumen final
+            print(line.strip())
+
+    print("\n" + "="*65)
+    print(f"Proceso finalizado. Resultados guardados en '{output_file}'")
