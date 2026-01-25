@@ -1,69 +1,42 @@
-import time
-from src.problem import  generate_all_small_instances
-from src.algorithms import multi_start_solver, variable_neighborhood_search
+import argparse
+import sys
+# Importamos las funciones desde tu archivo original
+from src.problem import (
+    generate_all_small_instances, 
+    generate_all_medium_instances, 
+    generate_all_large_instances
+)
 
-def run_grid_search_small():
-    # 1. Definir los parámetros a probar (El "Menú")
-    tabu_tenure_list = [2, 4, 6, 8]
-    candidates_list = [20, 60, 120, 200, 264]
-
-    # 2. Cargar las instancias (El banco de pruebas)
-    print("Generando instancias SMALL para el test...")
-    instances = generate_all_small_instances()
+def ejecutar():
+    parser = argparse.ArgumentParser(description="Controlador dinámico de búsqueda de rejilla.")
     
-    print(f"\n--- INICIANDO GRID SEARCH ({len(tabu_tenure_list) * len(candidates_list)} combinaciones) ---")
+    # Definimos el argumento --size
+    parser.add_argument(
+        '--size', 
+        choices=['small', 'medium', 'large'], 
+        required=True,
+        help="Determina qué generador de instancias ejecutar."
+    )
+
+    args = parser.parse_args()
+
+    # Diccionario de mapeo para evitar muchos 'if/else'
+    mapeo_funciones = {
+        'small': generate_all_small_instances,
+        'medium': generate_all_medium_instances,
+        'large': generate_all_large_instances
+    }
+
+    # Llamada dinámica
+    print(f"--- Iniciando proceso para tamaño: {args.size.upper()} ---")
     
-    best_config = None
-    best_avg_score = float('inf')
-
-    # 3. Bucles Anidados: Probar cada combinación
-    for tenure in tabu_tenure_list:
-        for candidates in candidates_list:
-            
-            print(f"\n[Evaluando Configuración] Tenure: {tenure} | Candidates: {candidates}")
-            start_time = time.time()
-            
-            total_makespan = 0
-            
-            # Parametros fijos para la prueba
-            current_params = {
-                'grasp_alpha': 0.5,      # Mantenemos fijo el GRASP
-                'tabu_tenure': tenure,   # Variable del bucle 1
-                'candidates_per_iter': candidates, # Variable del bucle 2
-                'max_iter': 100,          # Iteraciones un poco más bajas para que sea rápido
-                'vns_loops': 5
-            }
-
-            # Probar esta configuración en TODAS las instancias
-            for instance in instances:
-                _, makespan = multi_start_solver(
-                    instance=instance,
-                    algorithm_func=variable_neighborhood_search,
-                    n_restarts=3,  # Pocos reinicios para el tuning (ahorrar tiempo)
-                    **current_params
-                )
-                total_makespan += makespan
-            
-            # Calcular promedio
-            avg_makespan = total_makespan / len(instances)
-            elapsed = time.time() - start_time
-            
-            print(f"  -> Resultado: Promedio Makespan = {avg_makespan:.2f} (Tiempo: {elapsed:.2f}s)")
-            
-            # ¿Es el nuevo campeón?
-            if avg_makespan < best_avg_score:
-                best_avg_score = avg_makespan
-                best_config = (tenure, candidates)
-                print(f"¡Nuevo Mejor Candidato!")
-
-    print("\n" + "="*40)
-    print(f"GRID SEARCH FINALIZADO")
-    print(f"Mejor Configuración Encontrada:")
-    print(f"  - Tabu Tenure: {best_config[0]}")
-    print(f"  - Candidates:  {best_config[1]}")
-    print(f"  - Makespan Promedio: {best_avg_score:.2f}")
-    print("="*40)
+    try:
+        funcion_a_ejecutar = mapeo_funciones[args.size]
+        funcion_a_ejecutar() 
+        print(f"--- Proceso {args.size} finalizado con éxito ---")
+    except Exception as e:
+        print(f"Error al ejecutar la instancia {args.size}: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    run_grid_search_small()
-
+    ejecutar()

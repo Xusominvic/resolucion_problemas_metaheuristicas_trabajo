@@ -5,177 +5,183 @@ import glob
 import sys
 import os
 import re
+import multiprocessing
 from collections import defaultdict
 from src.io_handler import load_instance_from_json
 
 # --- FUNCIÓN DE ORDENACIÓN ---
 def get_sort_key(filepath):
-    """
-    Extrae los números del nombre del archivo para ordenar correctamente.
-    Ejemplo: 'instances/small_6x2_1.json' -> (6, 2, 1)
-    """
     filename = os.path.basename(filepath)
-    # Busca todos los grupos de dígitos en el nombre
     numbers = re.findall(r'\d+', filename)
     if len(numbers) >= 3:
-        # Retorna tupla (NumTareas, NumGruas, ID_Instancia)
         return int(numbers[0]), int(numbers[1]), int(numbers[2])
     return 0, 0, 0
 
-def solve_exact_pulp(instance, time_limit_sec=1200):
-    tasks = instance.tasks
-    cranes = instance.cranes
+# --- FUNCIÓN WORKER (PROCESO HIJO) ---
+def solve_process(instance_data, return_dict):
+    """
+    Esta función se ejecuta en un proceso aislado.
+    Recibe los datos crudos para reconstruir el modelo y resolverlo.
+    """
+    # Reconstruir datos (multiprocessing no pasa bien los objetos complejos, mejor pasar dicts o primitivos)
+    # Sin embargo, en este script simple, podemos intentar pasar la instancia si es pickleable.
+    # Si da error, pasamos solo las rutas.
+    
+    # IMPORTANTE: Re-importar dentro del proceso si fuera necesario, pero aquí hereda contexto.
+    tasks = instance_data.tasks
+    cranes = instance_data.cranes
     num_cranes = len(cranes)
     
-    # Pre-cálculos para Cotas
     total_processing_time = sum(t.p_0 for t in tasks)
     max_processing_time = max(t.p_0 for t in tasks)
-    
-    # Big-M ajustado (Horizonte seguro)
     BigM = total_processing_time
 
-    # 1. Definir Problema
+    # Definir Problema
     prob = pulp.LpProblem("GCSP_Exact", pulp.LpMinimize)
 
-    # 2. Variables
-    x = pulp.LpVariable.dicts("x", 
-                              ((t.id, c.id) for t in tasks for c in cranes), 
-                              cat='Binary')
-    
+    # Variables
+    x = pulp.LpVariable.dicts("x", ((t.id, c.id) for t in tasks for c in cranes), cat='Binary')
     S = pulp.LpVariable.dicts("S", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
     C = pulp.LpVariable.dicts("C", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
     Cmax = pulp.LpVariable("Cmax", lowBound=0, upBound=BigM, cat='Continuous')
     
-    # Variables de ordenamiento (solo para pares i < j)
     pair_keys = [(t1.id, t2.id) for t1 in tasks for t2 in tasks if t1.id < t2.id]
     y = pulp.LpVariable.dicts("y", pair_keys, cat='Binary')
 
-    # 3. Función Objetivo
+    # Función Objetivo
     prob += Cmax
 
-    # --- 4. OPTIMIZACIÓN (CORTES) ---
-    # Cota de Capacidad
+    # Restricciones y Cortes
     prob += Cmax >= total_processing_time / num_cranes
-    # Cota de Tarea Máxima
     prob += Cmax >= max_processing_time
-    # Cota Suma Asignada
     for c in cranes:
         prob += pulp.lpSum(t.p_0 * x[t.id, c.id] for t in tasks) <= Cmax
 
-    # 5. Restricciones Estructurales
-    # R1: Cada tarea asignada a una grúa
     for t in tasks:
         prob += pulp.lpSum(x[t.id, c.id] for c in cranes) == 1
-
-    # R2: Definición de Tiempos
-    for t in tasks:
         prob += C[t.id] == S[t.id] + t.p_0
         prob += Cmax >= C[t.id]
 
-    # R3: Secuenciación (Big-M)
     for c in cranes:
         for (t1_id, t2_id) in pair_keys:
-            # Caso y=1 (t1 antes t2)
             prob += S[t2_id] >= C[t1_id] - BigM * (3 - x[t1_id,c.id] - x[t2_id,c.id] - y[t1_id,t2_id])
-            # Caso y=0 (t2 antes t1)
             prob += S[t1_id] >= C[t2_id] - BigM * (2 - x[t1_id,c.id] - x[t2_id,c.id] + y[t1_id,t2_id])
 
-    # 6. Resolución
-    solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=time_limit_sec)
+    # Resolver (sin límite de tiempo interno, lo controla el padre)
+    # Usamos msg=False para que no ensucie la consola
+    solver = pulp.PULP_CBC_CMD(msg=False)
+    prob.solve(solver)
+    
+    # Guardar resultado en el diccionario compartido
+    status = pulp.LpStatus[prob.status]
+    if status == 'Optimal' or status == 'Feasible':
+        return_dict['makespan'] = pulp.value(Cmax)
+        return_dict['status'] = 'OK'
+    else:
+        return_dict['makespan'] = None
+        return_dict['status'] = 'FAIL'
+
+# --- FUNCIÓN PRINCIPAL DE CONTROL ---
+def solve_exact_with_hard_timeout(instance, time_limit_sec):
+    """
+    Lanza el solver en un proceso separado y lo mata si excede el tiempo.
+    """
+    # Gestor de memoria compartida
+    manager = multiprocessing.Manager()
+    return_dict = manager.dict()
+    
+    # Crear el proceso
+    p = multiprocessing.Process(target=solve_process, args=(instance, return_dict))
     
     start_time = time.time()
-    try:
-        prob.solve(solver)
-    except Exception as e:
-        return None, 0
-
-    elapsed = time.time() - start_time
-    status = pulp.LpStatus[prob.status]
+    p.start()
     
-    if status == 'Optimal' or (status == 'Feasible' and elapsed < time_limit_sec):
-        return pulp.value(Cmax), elapsed
+    # Esperar el tiempo límite (join con timeout)
+    p.join(time_limit_sec)
+    
+    elapsed = time.time() - start_time
+    
+    # Verificamos si sigue vivo
+    if p.is_alive():
+        # ¡TIMEOUT REAL!
+        p.terminate() # Intentar cerrar amablemente
+        time.sleep(0.1)
+        if p.is_alive():
+            p.kill() # Matar forzosamente (SIGKILL)
+        p.join() # Limpiar proceso zombie
+        
+        return None, time_limit_sec # Devolvemos el límite exacto (o elapsed)
     else:
-        return None, elapsed
+        # Terminó a tiempo
+        mk = return_dict.get('makespan')
+        return mk, elapsed
 
 if __name__ == "__main__":
+    # Fix para Windows (necesario para multiprocessing)
+    multiprocessing.freeze_support()
+    
     parser = argparse.ArgumentParser()
     parser.add_argument('--size', type=str, required=True, choices=['small', 'medium', 'large'])
-    parser.add_argument('--timeout', type=int, default=1200)
+    parser.add_argument('--timeout', type=int, default=650)
     args = parser.parse_args()
 
-    # 1. Buscar archivos
-    search_pattern = f"instances/{args.size}_*.json"
-    files = glob.glob(search_pattern)
-    
+    files = glob.glob(f"instances/{args.size}_*.json")
     if not files:
-        print(f"Error: No se encontraron archivos con el patrón '{search_pattern}'.")
-        print("Asegúrate de haber ejecutado 'generate_dataset.py' primero.")
+        print("Error: No hay archivos JSON.")
         sys.exit()
 
-    # 2. ORDENAR CORRECTAMENTE (Numérico)
     files.sort(key=get_sort_key)
-
     output_file = f"resultados_exactos_{args.size}.txt"
-    
-    print(f"\n=== MÉTODO EXACTO (PuLP) | SIZE: {args.size} | Total Archivos: {len(files)} ===")
-    print(f"Guardando resultados en: {output_file}")
+
+    print(f"\n=== EXACTO (HARD TIMEOUT) | SIZE: {args.size} | Limit: {args.timeout}s ===")
     print("-" * 65)
     print(f"{'Instancia':<25} | {'Makespan':<10} | {'Time (s)':<10} | {'Status':<10}")
     print("-" * 65)
     
-    # Estructura para agrupar resultados: results[(n_tasks, n_cranes)] = list of (mk, time)
     results_agg = defaultdict(list)
     processed_count = 0
 
-    # 3. Procesar Instancias
     for filepath in files:
         inst = load_instance_from_json(filepath)
         
-        # Resolver
-        mk, t = solve_exact_pulp(inst, args.timeout)
+        # LLAMADA A LA NUEVA FUNCIÓN BLINDADA
+        mk, t = solve_exact_with_hard_timeout(inst, args.timeout)
         
         processed_count += 1
         
-        status_str = "OK" if mk is not None else "TIMEOUT"
+        # Ajuste visual: Si t >= timeout, forzamos que se vea como timeout
+        is_timeout = mk is None or t >= args.timeout
+        status_str = "TIMEOUT" if is_timeout else "OK"
         mk_str = f"{mk:.1f}" if mk is not None else "-"
         
-        # Imprimir progreso en consola
         print(f"[{processed_count}/{len(files)}] {inst.name:<22} | {mk_str:<10} | {t:<10.2f} | {status_str}")
         
-        # Guardar datos
+        # Guardar (Si es timeout, guardamos None en makespan)
         key = (len(inst.tasks), len(inst.cranes))
         results_agg[key].append((mk, t))
 
-    # --- GENERAR INFORME FINAL (TXT) ---
+    # --- GENERAR INFORME (Igual que antes) ---
     with open(output_file, "w") as f:
-        header = f"RESUMEN RESULTADOS EXACTOS - {args.size.upper()}\n"
-        f.write("=" * 80 + "\n")
-        f.write(header)
-        f.write("=" * 80 + "\n")
-        f.write(f"{'Tamaño (NxM)':<15} | {'Muestras':<10} | {'AVG Makespan':<15} | {'AVG Time (s)':<15}\n")
+        header = f"RESULTADOS EXACTOS (HARD TIMEOUT) - {args.size.upper()}\n"
+        f.write("=" * 80 + "\n" + header + "=" * 80 + "\n")
+        f.write(f"{'Tamaño':<15} | {'Muestras':<10} | {'Avg MK':<15} | {'Avg Time':<15}\n")
         f.write("-" * 80 + "\n")
 
-        # Ordenar claves para el TXT
-        sorted_keys = sorted(results_agg.keys(), key=lambda x: (x[0], x[1]))
-
-        for (n_tasks, n_cranes) in sorted_keys:
+        for (n_tasks, n_cranes) in sorted(results_agg.keys()):
             data = results_agg[(n_tasks, n_cranes)]
+            solved = [d for d in data if d[0] is not None]
             
-            # Filtrar solo resueltas para el Makespan
-            solved_data = [d for d in data if d[0] is not None]
-            num_total = len(data)
-            num_solved = len(solved_data)
-            
-            if num_solved > 0:
-                avg_mk = sum(d[0] for d in solved_data) / num_solved
-                avg_time = sum(d[1] for d in solved_data) / num_solved
-                line = f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {avg_mk:<15.2f} | {avg_time:<15.2f}\n"
+            if solved:
+                avg_mk = sum(d[0] for d in solved) / len(solved)
+                avg_time = sum(d[1] for d in solved) / len(solved) # Tiempo de las resueltas
+                # Opcional: avg_time global incluyendo los 600s de los fallos
+                
+                line = f"{n_tasks} x {n_cranes:<11} | {len(data):<10} | {avg_mk:<15.2f} | {avg_time:<15.2f}\n"
             else:
-                line = f"{n_tasks} x {n_cranes:<11} | {num_total:<10} | {'TIMEOUT':<15} | {'> LIMIT':<15}\n"
+                line = f"{n_tasks} x {n_cranes:<11} | {len(data):<10} | {'TIMEOUT':<15} | {'> LIMIT':<15}\n"
             
             f.write(line)
-            # Imprimir también en consola el resumen final
             print(line.strip())
 
     print("\n" + "="*65)
-    print(f"Proceso finalizado. Resultados guardados en '{output_file}'")
+    print(f"Completado. Guardado en '{output_file}'")

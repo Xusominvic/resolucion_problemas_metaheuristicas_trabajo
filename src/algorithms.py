@@ -142,7 +142,6 @@ def construct_random_solution(instance):
     return seq
 
 def construct_grasp_solution(instance, alpha=0.5):
-    # ... [MANTENER EL CÓDIGO DE GRASP IGUAL QUE ANTES] ...
     candidates = [t for t in instance.tasks]
     solution_seq = []
     crane_states = {c.id: {'loc': c.location, 'time': 0.0} for c in instance.cranes}
