@@ -7,50 +7,56 @@ def run_grid_search_medium():
     tabu_tenure_list = [5, 8, 10, 12]
     candidates_list = [360, 420, 580, 760]
 
-    # 2. Cargar las instancias (El banco de pruebas)
+
+    # 2. Cargar las instancias
     print("Generando instancias MEDIUM para el test...")
     instances = generate_all_medium_instances()
     
     print(f"\n--- INICIANDO GRID SEARCH ({len(tabu_tenure_list) * len(candidates_list)} combinaciones) ---")
+    print(f"Usando límite de iteraciones dinámico: 6 * n * m")
     
     best_config = None
     best_avg_score = float('inf')
 
-    # 3. Bucles Anidados: Probar cada combinación
+    # 3. Bucles Anidados: Probar cada combinación de Hiperparámetros
     for tenure in tabu_tenure_list:
         for candidates in candidates_list:
             
             print(f"\n[Evaluando Configuración] Tenure: {tenure} | Candidates: {candidates}")
             start_time = time.time()
-            
             total_makespan = 0
-            
-            # Parametros fijos para la prueba
-            current_params = {
-                'grasp_alpha': 0.5,      # Mantenemos fijo el GRASP
-                'tabu_tenure': tenure,   # Variable del bucle 1
-                'candidates_per_iter': candidates, # Variable del bucle 2
-                'max_iter': 100,          # Iteraciones un poco más bajas para que sea rápido
-                'vns_loops': 5
-            }
 
-            # Probar esta configuración en TODAS las instancias
+            # Probar esta configuración en TODAS las instancias del grupo
             for instance in instances:
-                _, makespan = multi_start_solver(
+                # Calculamos n y m para esta instancia específica (según el paper)
+                n = len(instance.tasks)
+                m = len(instance.cranes)
+                
+                # Configuramos los parámetros actuales
+                current_params = {
+                    'grasp_alpha': 0.5,
+                    'tabu_tenure': tenure,
+                    'candidates_per_iter': candidates,
+                    'max_iter': 6 * n * m,  # Aplicación de la fórmula del paper 
+                    'vns_loops': 5
+                }
+
+                # Ejecutamos el solver con multi-start
+                _, makespan, _ = multi_start_solver(
                     instance=instance,
                     algorithm_func=variable_neighborhood_search,
-                    n_restarts=3,  # Pocos reinicios para el tuning (ahorrar tiempo)
+                    n_restarts=3, # Se mantiene en 3 para agilizar el tuning
                     **current_params
                 )
                 total_makespan += makespan
             
-            # Calcular promedio
+            # Calcular promedio de la configuración actual
             avg_makespan = total_makespan / len(instances)
             elapsed = time.time() - start_time
             
             print(f"  -> Resultado: Promedio Makespan = {avg_makespan:.2f} (Tiempo: {elapsed:.2f}s)")
             
-            # ¿Es el nuevo campeón?
+            # Actualizar el mejor candidato encontrado
             if avg_makespan < best_avg_score:
                 best_avg_score = avg_makespan
                 best_config = (tenure, candidates)
