@@ -19,15 +19,6 @@ def get_sort_key(filepath):
 
 # --- FUNCIÓN WORKER (PROCESO HIJO) ---
 def solve_process(instance_data, return_dict):
-    """
-    Esta función se ejecuta en un proceso aislado.
-    Recibe los datos crudos para reconstruir el modelo y resolverlo.
-    """
-    # Reconstruir datos (multiprocessing no pasa bien los objetos complejos, mejor pasar dicts o primitivos)
-    # Sin embargo, en este script simple, podemos intentar pasar la instancia si es pickleable.
-    # Si da error, pasamos solo las rutas.
-    
-    # IMPORTANTE: Re-importar dentro del proceso si fuera necesario, pero aquí hereda contexto.
     tasks = instance_data.tasks
     cranes = instance_data.cranes
     num_cranes = len(cranes)
@@ -36,10 +27,8 @@ def solve_process(instance_data, return_dict):
     max_processing_time = max(t.p_0 for t in tasks)
     BigM = total_processing_time
 
-    # Definir Problema
     prob = pulp.LpProblem("GCSP_Exact", pulp.LpMinimize)
 
-    # Variables
     x = pulp.LpVariable.dicts("x", ((t.id, c.id) for t in tasks for c in cranes), cat='Binary')
     S = pulp.LpVariable.dicts("S", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
     C = pulp.LpVariable.dicts("C", (t.id for t in tasks), lowBound=0, upBound=BigM, cat='Continuous')
@@ -48,10 +37,8 @@ def solve_process(instance_data, return_dict):
     pair_keys = [(t1.id, t2.id) for t1 in tasks for t2 in tasks if t1.id < t2.id]
     y = pulp.LpVariable.dicts("y", pair_keys, cat='Binary')
 
-    # Función Objetivo
     prob += Cmax
 
-    # Restricciones y Cortes
     prob += Cmax >= total_processing_time / num_cranes
     prob += Cmax >= max_processing_time
     for c in cranes:
@@ -67,12 +54,9 @@ def solve_process(instance_data, return_dict):
             prob += S[t2_id] >= C[t1_id] - BigM * (3 - x[t1_id,c.id] - x[t2_id,c.id] - y[t1_id,t2_id])
             prob += S[t1_id] >= C[t2_id] - BigM * (2 - x[t1_id,c.id] - x[t2_id,c.id] + y[t1_id,t2_id])
 
-    # Resolver (sin límite de tiempo interno, lo controla el padre)
-    # Usamos msg=False para que no ensucie la consola
     solver = pulp.PULP_CBC_CMD(msg=False)
     prob.solve(solver)
     
-    # Guardar resultado en el diccionario compartido
     status = pulp.LpStatus[prob.status]
     if status == 'Optimal' or status == 'Feasible':
         return_dict['makespan'] = pulp.value(Cmax)
@@ -81,43 +65,28 @@ def solve_process(instance_data, return_dict):
         return_dict['makespan'] = None
         return_dict['status'] = 'FAIL'
 
-# --- FUNCIÓN PRINCIPAL DE CONTROL ---
+# --- FUNCIÓN DE CONTROL CON TIMEOUT ---
 def solve_exact_with_hard_timeout(instance, time_limit_sec):
-    """
-    Lanza el solver en un proceso separado y lo mata si excede el tiempo.
-    """
-    # Gestor de memoria compartida
     manager = multiprocessing.Manager()
     return_dict = manager.dict()
-    
-    # Crear el proceso
     p = multiprocessing.Process(target=solve_process, args=(instance, return_dict))
     
     start_time = time.time()
     p.start()
-    
-    # Esperar el tiempo límite (join con timeout)
     p.join(time_limit_sec)
-    
     elapsed = time.time() - start_time
     
-    # Verificamos si sigue vivo
     if p.is_alive():
-        # ¡TIMEOUT REAL!
-        p.terminate() # Intentar cerrar amablemente
+        p.terminate()
         time.sleep(0.1)
-        if p.is_alive():
-            p.kill() # Matar forzosamente (SIGKILL)
-        p.join() # Limpiar proceso zombie
-        
-        return None, time_limit_sec # Devolvemos el límite exacto (o elapsed)
+        if p.is_alive(): p.kill()
+        p.join()
+        return None, elapsed
     else:
-        # Terminó a tiempo
         mk = return_dict.get('makespan')
         return mk, elapsed
 
 if __name__ == "__main__":
-    # Fix para Windows (necesario para multiprocessing)
     multiprocessing.freeze_support()
     
     parser = argparse.ArgumentParser()
@@ -133,55 +102,66 @@ if __name__ == "__main__":
     files.sort(key=get_sort_key)
     output_file = f"resultados_exactos_{args.size}.txt"
 
-    print(f"\n=== EXACTO (HARD TIMEOUT) | SIZE: {args.size} | Limit: {args.timeout}s ===")
-    print("-" * 65)
-    print(f"{'Instancia':<25} | {'Makespan':<10} | {'Time (s)':<10} | {'Status':<10}")
-    print("-" * 65)
-    
+    results_detailed = [] # Para guardar la traza completa
     results_agg = defaultdict(list)
-    processed_count = 0
 
+    print(f"\n=== EJECUCIÓN EXACTO | SIZE: {args.size} | Timeout: {args.timeout}s ===")
+    
     for filepath in files:
         inst = load_instance_from_json(filepath)
-        
-        # LLAMADA A LA NUEVA FUNCIÓN BLINDADA
         mk, t = solve_exact_with_hard_timeout(inst, args.timeout)
         
-        processed_count += 1
+        status_str = "TIMEOUT" if mk is None else "OK"
+        mk_val = mk if mk is not None else -1.0
         
-        # Ajuste visual: Si t >= timeout, forzamos que se vea como timeout
-        is_timeout = mk is None or t >= args.timeout
-        status_str = "TIMEOUT" if is_timeout else "OK"
-        mk_str = f"{mk:.1f}" if mk is not None else "-"
+        # Guardar traza individual
+        res_entry = {
+            'name': inst.name,
+            'n': len(inst.tasks),
+            'm': len(inst.cranes),
+            'makespan': mk_val,
+            'time': t,
+            'status': status_str
+        }
+        results_detailed.append(res_entry)
+        results_agg[(res_entry['n'], res_entry['m'])].append(res_entry)
         
-        print(f"[{processed_count}/{len(files)}] {inst.name:<22} | {mk_str:<10} | {t:<10.2f} | {status_str}")
-        
-        # Guardar (Si es timeout, guardamos None en makespan)
-        key = (len(inst.tasks), len(inst.cranes))
-        results_agg[key].append((mk, t))
+        print(f"Instancia: {inst.name:<20} | MK: {res_entry['makespan']:>8.1f} | T: {t:>7.2f}s | {status_str}")
 
-    # --- GENERAR INFORME (Igual que antes) ---
+    # --- ESCRIBIR ARCHIVO DE SALIDA ---
     with open(output_file, "w") as f:
-        header = f"RESULTADOS EXACTOS (HARD TIMEOUT) - {args.size.upper()}\n"
-        f.write("=" * 80 + "\n" + header + "=" * 80 + "\n")
-        f.write(f"{'Tamaño':<15} | {'Muestras':<10} | {'Avg MK':<15} | {'Avg Time':<15}\n")
-        f.write("-" * 80 + "\n")
+        f.write(f"REPORTE DETALLADO - SOLVER EXACTO - {args.size.upper()}\n")
+        f.write("="*90 + "\n\n")
 
-        for (n_tasks, n_cranes) in sorted(results_agg.keys()):
-            data = results_agg[(n_tasks, n_cranes)]
-            solved = [d for d in data if d[0] is not None]
+        # 1. TRAZA COMPLETA (Instancia por instancia)
+        f.write("1. TRAZA COMPLETA DE INSTANCIAS\n")
+        f.write("-" * 90 + "\n")
+        f.write(f"{'Instancia':<25} | {'Tamaño':<10} | {'Makespan':<12} | {'Tiempo (s)':<12} | {'Estado':<10}\n")
+        f.write("-" * 90 + "\n")
+        for r in results_detailed:
+            mk_s = f"{r['makespan']:.1f}" if r['makespan'] > 0 else "TIMEOUT"
+            f.write(f"{r['name']:<25} | {r['n']}x{r['m']:<7} | {mk_s:<12} | {r['time']:<12.2f} | {r['status']:<10}\n")
+        
+        # 2. RESUMEN POR GRUPOS (Medias)
+        f.write("\n\n2. RESUMEN AGREGADO POR TAMAÑO\n")
+        f.write("-" * 90 + "\n")
+        f.write(f"{'Tamaño':<10} | {'Total':<6} | {'OK':<4} | {'Avg MK (OK)':<15} | {'Avg Time (OK)':<15} | {'Avg Time (All)':<15}\n")
+        f.write("-" * 90 + "\n")
+        
+        for (n, m) in sorted(results_agg.keys()):
+            group = results_agg[(n, m)]
+            solved = [r for r in group if r['makespan'] > 0]
             
-            if solved:
-                avg_mk = sum(d[0] for d in solved) / len(solved)
-                avg_time = sum(d[1] for d in solved) / len(solved) # Tiempo de las resueltas
-                # Opcional: avg_time global incluyendo los 600s de los fallos
-                
-                line = f"{n_tasks} x {n_cranes:<11} | {len(data):<10} | {avg_mk:<15.2f} | {avg_time:<15.2f}\n"
-            else:
-                line = f"{n_tasks} x {n_cranes:<11} | {len(data):<10} | {'TIMEOUT':<15} | {'> LIMIT':<15}\n"
+            avg_mk_ok = sum(r['makespan'] for r in solved) / len(solved) if solved else 0
+            avg_t_ok = sum(r['time'] for r in solved) / len(solved) if solved else 0
+            avg_t_all = sum(r['time'] for r in group) / len(group)
             
-            f.write(line)
-            print(line.strip())
+            f.write(f"{n}x{m:<7} | {len(group):<6} | {len(solved):<4} | {avg_mk_ok:<15.2f} | {avg_t_ok:<15.2f} | {avg_t_all:<15.2f}\n")
 
-    print("\n" + "="*65)
-    print(f"Completado. Guardado en '{output_file}'")
+        # 3. DATOS BRUTOS PARA EXCEL (Formato CSV simple al final)
+        f.write("\n\n3. DATOS BRUTOS (COPIAR A EXCEL)\n")
+        f.write("Nombre;N;M;Makespan;Tiempo;Estado\n")
+        for r in results_detailed:
+            f.write(f"{r['name']};{r['n']};{r['m']};{r['makespan']};{r['time']};{r['status']}\n")
+
+    print(f"\nProceso finalizado. Se han guardado todos los datos (incluida la traza) en: {output_file}")
