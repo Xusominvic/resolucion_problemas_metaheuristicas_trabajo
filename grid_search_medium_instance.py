@@ -37,7 +37,7 @@ def run_grid_search_medium():
                     'grasp_alpha': 0.5,
                     'tabu_tenure': tenure,
                     'candidates_per_iter': candidates,
-                    'max_iter': 6 * n * m,  # Aplicación de la fórmula del paper 
+                    'max_iter': 50,  # Aplicación de la fórmula del paper 
                     'vns_loops': 5
                 }
 
