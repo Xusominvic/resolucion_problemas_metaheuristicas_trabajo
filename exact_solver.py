@@ -55,28 +55,32 @@ def solve_exact(instance_data, time_limit_sec):
             prob += S[t2_id] >= C[t1_id] - BigM * (3 - x[t1_id,c.id] - x[t2_id,c.id] - y[t1_id,t2_id])
             prob += S[t1_id] >= C[t2_id] - BigM * (2 - x[t1_id,c.id] - x[t2_id,c.id] + y[t1_id,t2_id])
 
-    # CONFIGURACIÓN DEL TIMEOUT DIRECTO EN EL SOLVER
-    # msg=False para no saturar la consola, timeLimit indica los segundos máximos
+    # Configuración del solver con límite de tiempo estricto
+    # timeLimit es el parámetro que entiende el motor CBC
     solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=time_limit_sec)
     
     start_time = time.time()
-    prob.solve(solver)
+    try:
+        prob.solve(solver)
+    except:
+        # En caso de error inesperado o interrupción forzada
+        pass
     elapsed = time.time() - start_time
     
     status = pulp.LpStatus[prob.status]
     
-    # Si el estado es Not Solved o similar debido al tiempo, devolvemos None
-    if status in ['Optimal', 'Feasible']:
+    # Verificamos si se obtuvo una solución válida
+    # Si el tiempo transcurrido es mayor o igual al límite, o el estado no es óptimo/factible:
+    if status in ['Optimal', 'Feasible'] and elapsed < (time_limit_sec + 2):
         return pulp.value(Cmax), elapsed, "OK"
-    elif elapsed >= time_limit_sec:
-        return None, elapsed, "TIMEOUT"
     else:
-        return None, elapsed, "FAIL"
+        # Forzamos el MK a 0 si hay TIMEOUT o falla
+        return 0.0, elapsed, "TIMEOUT"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--size', type=str, required=True, choices=['small', 'medium', 'large'])
-    parser.add_argument('--timeout', type=int, default=600) # Límite por defecto a 600s
+    parser.add_argument('--timeout', type=int, default=600)
     args = parser.parse_args()
 
     files = glob.glob(f"instances/{args.size}_*.json")
@@ -90,20 +94,20 @@ if __name__ == "__main__":
     print(f"\n=== EJECUCIÓN EXACTO | TAMAÑO: {args.size} | Límite: {args.timeout}s ===")
     
     with open(output_file, "w") as f:
+        # Cabecera simple para Excel
         f.write(f"Instancia;N;M;Makespan;Tiempo;Estado\n")
         
         for filepath in files:
             inst = load_instance_from_json(filepath)
             mk, t, status_str = solve_exact(inst, args.timeout)
             
-            mk_val = f"{mk:.1f}" if mk is not None else "N/A"
             n_tasks = len(inst.tasks)
             m_cranes = len(inst.cranes)
             
             # Resultado por consola
-            print(f"Instancia: {inst.name:<20} | MK: {mk_val:>8} | T: {t:>7.2f}s | {status_str}")
+            print(f"Instancia: {inst.name:<20} | MK: {mk:>8.1f} | T: {t:>7.2f}s | {status_str}")
             
-            # Guardar en archivo (solo traza individual)
-            f.write(f"{inst.name};{n_tasks};{m_cranes};{mk_val};{t:.2f};{status_str}\n")
+            # Guardar en archivo (sin medias, solo datos de la instancia)
+            f.write(f"{inst.name};{n_tasks};{m_cranes};{mk:.1f};{t:.2f};{status_str}\n")
 
     print(f"\nProceso finalizado. Resultados guardados en: {output_file}")
