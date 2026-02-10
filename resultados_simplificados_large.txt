@@ -1,0 +1,3 @@
+Instancia,Makespan,Tiempo,LB,GAP
+large_50x5_2,1107.6,254.38,1077,2.84
+large_50x5_3,1055.6,254.93,1028,2.68
