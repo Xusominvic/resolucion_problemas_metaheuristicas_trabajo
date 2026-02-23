@@ -1,6 +1,6 @@
 """
-Solver Exacto CP-SAT para GCSP - Versión Optimizada
-- Respeta el Timeout rigurosamente.
+Solver Exacto CP-SAT para GCSP - Versión con Timeout Riguroso.
+- Usa multiprocessing para garantizar el límite de tiempo por instancia.
 - Reduce la explosión combinatoria comprobando solo grúas adyacentes.
 """
 
@@ -9,11 +9,13 @@ import glob
 import os
 import re
 import time
+import multiprocessing
 from ortools.sat.python import cp_model
 from src.io_handler import load_instance_from_json
 
+
 class GCSP_CP_SAT_Solver:
-    def __init__(self, instance, time_limit=600):
+    def __init__(self, instance, time_limit=7200):
         self.instance = instance
         self.time_limit = time_limit
         self.model = cp_model.CpModel()
@@ -31,9 +33,8 @@ class GCSP_CP_SAT_Solver:
         self.depot_start = self.num_tasks
         
         # Horizonte Temporal
-        # Hacemos un cálculo ajustado para no abusar del dominio
         total_p = sum(t.p_0 for t in self.tasks)
-        max_dist = self.num_tasks * 20 # Estimación conservadora
+        max_dist = self.num_tasks * 20
         max_travel = self.num_tasks * max_dist * self.t0
         self.horizon = int(total_p + max_travel + 600)
 
@@ -70,7 +71,6 @@ class GCSP_CP_SAT_Solver:
             # Variables Presence y Self-Loops
             for i in self.all_tasks:
                 self.presence[i, k] = self.model.NewBoolVar(f'pres_{i}_{k}')
-                # Arco i->i (salto) activo si NO presence
                 arcs.append([i, i, self.presence[i, k].Not()])
 
             # Arcos Tarea -> Tarea
@@ -78,7 +78,6 @@ class GCSP_CP_SAT_Solver:
                 for j in self.all_tasks:
                     if i == j: continue
                     
-                    # Optimización: No crear arcos imposibles por tiempo (opcional, pero ayuda)
                     lit = self.model.NewBoolVar(f'r_{i}_{j}_{k}')
                     arcs.append([i, j, lit])
                     
@@ -113,11 +112,7 @@ class GCSP_CP_SAT_Solver:
         for i in self.all_tasks:
             self.model.Add(sum(self.presence[i, k] for k in self.all_cranes) == 1)
 
-        # 4. Non-Crossing (OPTIMIZADO)
-        # Solo chequeamos pares de grúas adyacentes (k, k+1)
-        # Solo chequeamos tareas que violarían la distancia de seguridad
-        
-        # Ordenar tareas por ubicación ayuda a visualizar, pero aquí iteramos pares
+        # 4. Non-Crossing (solo grúas adyacentes)
         count_constraints = 0
         
         for k in range(self.num_cranes - 1):
@@ -125,42 +120,15 @@ class GCSP_CP_SAT_Solver:
             
             for i in self.all_tasks:
                 for j in self.all_tasks:
-                    # Si Grúa k hace 'i' y Grúa k+1 hace 'j':
-                    # Como k está a la izquierda de k+1, 'i' debe estar a la izquierda de 'j'
-                    # Condición física requerida: Loc(i) + S <= Loc(j)
-                    
-                    # Si la condición física YA se cumple siempre, no añadimos restricción
                     if locations[i] + self.s <= locations[j]:
                         continue 
                     
-                    # Si llegamos aquí, es que Loc(i) + S > Loc(j).
-                    # Esto es peligroso. Si k hace i y k+1 hace j, NO pueden solaparse en tiempo.
-                    
-                    # Implicación: (Pres[i,k] AND Pres[j,next_k]) => NO Overlap(i, j)
-                    # Equivalentemente: (Pres[i,k] AND Pres[j,next_k] AND Overlap(i, j)) => FALSO
-                    
-                    # Detectar Overlap
-                    # Overlap si: Start(i) < End(j) AND Start(j) < End(i)
-                    
-                    # Creamos boolvar para overlap solo si es necesario
-                    # Usamos lógica booleana pura para evitar reificar todo
-                    
-                    # Opción eficiente:
-                    # Si ambos presentes, entonces i debe acabar antes que j empiece O j antes que i
-                    # Pero espera, si Loc(i) > Loc(j), k (izq) haciendo i y k+1 (der) haciendo j 
-                    # es un CRUCE FÍSICO IMPOSIBLE DE RESOLVER SIMULTÁNEAMENTE.
-                    # Ni siquiera vale que una acabe y empiece la otra si no se mueven. 
-                    # Pero en este modelo simplificado asumimos que si no hay overlap temporal, 
-                    # las grúas se han movido.
-                    
-                    # Restricción: No Overlap Temporal
                     i_before_j = self.model.NewBoolVar(f'b_{i}_{j}')
                     j_before_i = self.model.NewBoolVar(f'b_{j}_{i}')
                     
                     self.model.Add(self.ends[i] <= self.starts[j]).OnlyEnforceIf(i_before_j)
                     self.model.Add(self.ends[j] <= self.starts[i]).OnlyEnforceIf(j_before_i)
                     
-                    # Si ambas grúas activas en estas tareas conflictivas -> Debe haber orden temporal
                     self.model.AddBoolOr([i_before_j, j_before_i]).OnlyEnforceIf(
                         [self.presence[i, k], self.presence[j, next_k]]
                     )
@@ -176,8 +144,8 @@ class GCSP_CP_SAT_Solver:
 
     def solve(self):
         self.solver = cp_model.CpSolver()
-        # TIMEOUT RIGUROSO
-        self.solver.parameters.max_time_in_seconds = self.time_limit
+        # Límite interno de CP-SAT (primera línea de defensa)
+        self.solver.parameters.max_time_in_seconds = float(self.time_limit)
         self.solver.parameters.num_search_workers = 8
         self.solver.parameters.log_search_progress = False
         
@@ -211,13 +179,97 @@ class GCSP_CP_SAT_Solver:
             if result['lower_bound'] > 0:
                 result['gap'] = (result['makespan'] - result['lower_bound']) / result['lower_bound'] * 100
         else:
-            # Detectar timeout real
-            if self.solve_time >= self.time_limit * 0.95: # Margen del 5%
+            if self.solve_time >= self.time_limit * 0.95:
                 result['status'] = 'TIMEOUT'
             else:
                 result['status'] = 'INFEASIBLE'
         
         return result
+
+
+# =========================================================
+# FUNCIÓN PARA EJECUTAR EN PROCESO SEPARADO (TIMEOUT REAL)
+# =========================================================
+def _solve_instance_worker(filepath, time_limit, result_queue):
+    """Función que se ejecuta en un proceso hijo.
+    
+    Construye y resuelve el modelo CP-SAT, y envía el resultado
+    a través de una Queue compartida con el proceso padre.
+    """
+    try:
+        inst = load_instance_from_json(filepath)
+        solver = GCSP_CP_SAT_Solver(inst, time_limit=time_limit)
+        solver.build_model()
+        res = solver.solve()
+        result_queue.put(res)
+    except Exception as e:
+        inst = load_instance_from_json(filepath)
+        result_queue.put({
+            'instance_name': inst.name,
+            'status': 'ERROR',
+            'makespan': None,
+            'lower_bound': None,
+            'time': 0,
+            'gap': None
+        })
+
+
+def solve_with_hard_timeout(filepath, time_limit):
+    """Ejecuta el solver en un proceso separado con timeout garantizado.
+    
+    Si el proceso excede time_limit, se termina forzosamente y se
+    devuelve un resultado TIMEOUT. Esto garantiza que ninguna instancia
+    supere el límite de tiempo, independientemente de CP-SAT.
+    """
+    result_queue = multiprocessing.Queue()
+    
+    process = multiprocessing.Process(
+        target=_solve_instance_worker,
+        args=(filepath, time_limit, result_queue)
+    )
+    
+    start_time = time.time()
+    process.start()
+    
+    # Esperar al proceso con un margen de 30s extra para build_model + overhead
+    process.join(timeout=time_limit + 30)
+    
+    elapsed = time.time() - start_time
+    
+    if process.is_alive():
+        # El proceso sigue vivo -> matarlo
+        print(f"   [!!! TIMEOUT FORZADO después de {elapsed:.0f}s !!!]")
+        process.terminate()
+        process.join(timeout=5)
+        if process.is_alive():
+            process.kill()
+            process.join()
+        
+        # Recuperar el nombre de la instancia del filepath
+        inst = load_instance_from_json(filepath)
+        return {
+            'instance_name': inst.name,
+            'status': 'TIMEOUT',
+            'makespan': None,
+            'lower_bound': None,
+            'time': elapsed,
+            'gap': None
+        }
+    
+    # El proceso terminó a tiempo -> recoger resultado
+    if not result_queue.empty():
+        return result_queue.get()
+    else:
+        inst = load_instance_from_json(filepath)
+        return {
+            'instance_name': inst.name,
+            'status': 'ERROR',
+            'makespan': None,
+            'lower_bound': None,
+            'time': elapsed,
+            'gap': None
+        }
+
 
 # =========================================================
 # MAIN
@@ -232,7 +284,8 @@ def get_sort_key(filepath):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--size', type=str, required=True, choices=['small', 'medium', 'large'])
-    parser.add_argument('--time_limit', type=int, default=600)
+    parser.add_argument('--time_limit', type=int, default=7200,
+                        help='Límite de tiempo POR INSTANCIA en segundos (default: 7200 = 2h)')
     args = parser.parse_args()
     
     files = glob.glob(f"instances/{args.size}_*.json")
@@ -245,7 +298,7 @@ def main():
     out_file = f"resultados_exacto_riguroso_{args.size}.txt"
     
     print(f"\n{'='*90}")
-    print(f" SOLVER EXACTO (OPTIMIZADO) | SIZE: {args.size.upper()} | LIMIT: {args.time_limit}s")
+    print(f" SOLVER EXACTO CP-SAT | SIZE: {args.size.upper()} | LIMIT: {args.time_limit}s/instancia")
     print(f"{'='*90}")
     print(f"{'Instancia':<25} | {'Status':<10} | {'Makespan':<10} | {'Time':<8} | {'Gap'}")
     print("-" * 90)
@@ -254,17 +307,8 @@ def main():
         f.write("Instancia,Status,Makespan,Time,Gap\n")
         
         for filepath in files:
-            inst = load_instance_from_json(filepath)
-            
-            solver = GCSP_CP_SAT_Solver(inst, time_limit=args.time_limit)
-            
-            # Control de tiempo de construcción
-            try:
-                solver.build_model()
-                res = solver.solve()
-            except Exception as e:
-                print(f"Error procesando {inst.name}: {e}")
-                res = {'instance_name': inst.name, 'status': 'ERROR', 'makespan': None, 'time': 0, 'gap': None}
+            # Ejecutar solver con timeout REAL garantizado por multiprocessing
+            res = solve_with_hard_timeout(filepath, args.time_limit)
 
             mk = f"{res['makespan']:.1f}" if res['makespan'] else "-"
             gap = f"{res['gap']:.2f}" if res['gap'] is not None else "-"
