@@ -1,3 +1,3 @@
 @echo off
-python process_results.py > result.log 2>&1
-echo Done > done.txt
+C:\Users\jocarles\AppData\Local\Programs\Python\Python311\python.exe process_results.py
+echo %errorlevel% > exitcode.txt

@@ -1,21 +1,37 @@
 import csv
 import os
+import sys
 from collections import defaultdict
 
+def log(msg):
+    with open("script_log.txt", "a") as f:
+        f.write(msg + "\n")
+    print(msg)
+
 def parse_exact(file_path):
+    log(f"Parsing exact: {file_path}")
     results = defaultdict(list)
     if not os.path.exists(file_path):
-        print(f"File not found: {file_path}")
+        log(f"File not found: {file_path}")
         return {}
     with open(file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             if not row.get('Instancia'): continue
             comb = row['Instancia'].split('_')[1]
-            results[comb].append({
-                'MK exacto': float(row['Makespan']),
-                'Time Exacto': float(row['Tiempo'])
-            })
+            try:
+                mk = float(row.get('Makespan', 0))
+                time_val = row.get('Tiempo') or row.get('Time')
+                if time_val:
+                    time_val = float(time_val)
+                else:
+                    time_val = 0.0
+                results[comb].append({
+                    'MK exacto': mk,
+                    'Time Exacto': time_val
+                })
+            except Exception as e:
+                log(f"Error parsing row {row}: {e}")
     
     summary = {}
     for comb, values in results.items():
@@ -25,9 +41,10 @@ def parse_exact(file_path):
     return summary
 
 def parse_metaheuristic(file_path, prefix):
+    log(f"Parsing meta: {file_path}")
     results = defaultdict(list)
     if not os.path.exists(file_path):
-        print(f"File not found: {file_path}")
+        log(f"File not found: {file_path}")
         return {}
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
@@ -53,74 +70,84 @@ def parse_metaheuristic(file_path, prefix):
     for comb, values in results.items():
         summary[comb] = {}
         for key in [f'MK {prefix}', f'Time {prefix}', f'GAP {prefix}']:
-            summary[comb][key] = sum(v[key] for v in values) / len(values)
+            if values:
+                summary[comb][key] = sum(v[key] for v in values) / len(values)
+            else:
+                summary[comb][key] = None
     return summary
 
 def main():
-    size = 'medium'
-    base_dir = r"c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2"
-    
-    exact_path = os.path.join(base_dir, size, f"resultados_exacto_{size}.txt")
-    random_path = os.path.join(base_dir, size, f"resultados_random_{size}.txt")
-    grasp_path = os.path.join(base_dir, size, f"resultados_grasp_{size}.txt")
-    
-    print(f"Processing {size} instances...")
-    
-    exact_summary = parse_exact(exact_path)
-    random_summary = parse_metaheuristic(random_path, 'random')
-    grasp_summary = parse_metaheuristic(grasp_path, 'Grasp')
-    
-    print(f"Exact keys: {list(exact_summary.keys())[:3]}")
-    print(f"Random keys: {list(random_summary.keys())[:3]}")
-    print(f"Grasp keys: {list(grasp_summary.keys())[:3]}")
-
-    combinations = sorted(exact_summary.keys(), key=lambda x: [int(c) for c in x.split('x')])
-    output_path = os.path.join(base_dir, f"resumen_resultados_{size}_v2.csv")
-
-    field_mapping = {
-        'MK random': 'MK random',
-        'Time random': 'Time Random',
-        'GAP random': 'GAP RAndom',
-        'MK Grasp': 'MK Grasp',
-        'Time Grasp': 'Time GRASP',
-        'GAP Grasp': 'GAP GRASP'
-    }
-
-    with open(output_path, 'w', newline='', encoding='utf-8') as f:
-        fieldnames = [
-            'Combination',
-            'MK exacto', 'Time Exacto',
-            'MK random', 'Time Random', 'GAP RAndom',
-            'MK Grasp', 'Time GRASP', 'GAP GRASP'
-        ]
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
+    try:
+        size = 'medium'
+        base_dir = r"c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2"
         
-        for comb in combinations:
-            row = {'Combination': comb}
-            row.update(exact_summary.get(comb, {}))
-            
-            r_data = random_summary.get(comb, {})
-            for k, v in r_data.items():
-                if k in field_mapping:
-                    row[field_mapping[k]] = v
-            
-            g_data = grasp_summary.get(comb, {})
-            for k, v in g_data.items():
-                if k in field_mapping:
-                    row[field_mapping[k]] = v
-            
-            # Rounding
-            for k in fieldnames:
-                if k in row and row[k] is not None:
-                    if k != 'Combination':
-                        row[k] = round(float(row[k]), 4)
-                else:
-                    row[k] = None
-            
-            writer.writerow(row)
+        exact_path = os.path.join(base_dir, size, f"resultados_exacto_{size}.txt")
+        random_path = os.path.join(base_dir, size, f"resultados_random_{size}.txt")
+        grasp_path = os.path.join(base_dir, size, f"resultados_grasp_{size}.txt")
+        
+        log(f"Processing {size} instances...")
+        
+        exact_summary = parse_exact(exact_path)
+        random_summary = parse_metaheuristic(random_path, 'random')
+        grasp_summary = parse_metaheuristic(grasp_path, 'Grasp')
+        
+        log(f"Exact keys: {len(exact_summary)}")
+        log(f"Random keys: {len(random_summary)}")
+        log(f"Grasp keys: {len(grasp_summary)}")
 
-    print(f"File saved to {output_path}")
+        all_combs = set(exact_summary.keys()) | set(random_summary.keys()) | set(grasp_summary.keys())
+        combinations = sorted(list(all_combs), key=lambda x: [int(c) for c in x.split('x')])
+        
+        output_path = os.path.join(base_dir, f"resumen_resultados_{size}.csv")
+        log(f"Output path: {output_path}")
+
+        field_mapping = {
+            'MK random': 'MK random',
+            'Time random': 'Time Random',
+            'GAP random': 'GAP RAndom',
+            'MK Grasp': 'MK Grasp',
+            'Time Grasp': 'Time GRASP',
+            'GAP Grasp': 'GAP GRASP'
+        }
+
+        with open(output_path, 'w', newline='', encoding='utf-8') as f:
+            fieldnames = [
+                'Combination',
+                'MK exacto', 'Time Exacto',
+                'MK random', 'Time Random', 'GAP RAndom',
+                'MK Grasp', 'Time GRASP', 'GAP GRASP'
+            ]
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            
+            for comb in combinations:
+                row = {'Combination': comb}
+                row.update(exact_summary.get(comb, {}))
+                
+                r_data = random_summary.get(comb, {})
+                for k, v in r_data.items():
+                    if k in field_mapping:
+                        row[field_mapping[k]] = v
+                    elif k == 'GAP random':
+                        row['GAP RAndom'] = v
+                
+                g_data = grasp_summary.get(comb, {})
+                for k, v in g_data.items():
+                    if k in field_mapping:
+                        row[field_mapping[k]] = v
+                
+                clean_row = {k: row.get(k) for k in fieldnames}
+                for k in fieldnames:
+                    if clean_row[k] is not None and k != 'Combination':
+                        try:
+                            clean_row[k] = round(float(clean_row[k]), 4)
+                        except:
+                            pass
+                writer.writerow(clean_row)
+        log(f"File successfully saved to {output_path}")
+    except Exception as e:
+        log(f"CRITICAL ERROR in main: {e}")
 
 if __name__ == '__main__':
+    open("script_log.txt", "w").close() # Clear log
     main()
