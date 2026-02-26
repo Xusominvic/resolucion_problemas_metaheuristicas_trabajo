@@ -76,9 +76,8 @@ def parse_metaheuristic(file_path, prefix):
                 summary[comb][key] = None
     return summary
 
-def main():
+def main(size='medium'):
     try:
-        size = 'medium'
         base_dir = r"c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2"
         
         exact_path = os.path.join(base_dir, size, f"resultados_exacto_{size}.txt")
@@ -96,6 +95,7 @@ def main():
         log(f"Grasp keys: {len(grasp_summary)}")
 
         all_combs = set(exact_summary.keys()) | set(random_summary.keys()) | set(grasp_summary.keys())
+        # Sort combinations numerically: e.g., 30x3, 30x4, 40x3...
         combinations = sorted(list(all_combs), key=lambda x: [int(c) for c in x.split('x')])
         
         output_path = os.path.join(base_dir, f"resumen_resultados_{size}.csv")
@@ -150,4 +150,7 @@ def main():
 
 if __name__ == '__main__':
     open("script_log.txt", "w").close() # Clear log
-    main()
+    target_size = 'large'
+    if len(sys.argv) > 1:
+        target_size = sys.argv[1]
+    main(target_size)

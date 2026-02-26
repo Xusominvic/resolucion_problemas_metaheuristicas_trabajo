@@ -1,0 +1,9 @@
+Processing large instances...
+Parsing exact: c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2\large\resultados_exacto_large.txt
+Parsing meta: c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2\large\resultados_random_large.txt
+Parsing meta: c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2\large\resultados_grasp_large.txt
+Exact keys: 15
+Random keys: 15
+Grasp keys: 15
+Output path: c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2\resumen_resultados_large.csv
+File successfully saved to c:\Users\jocarles\Documents\resolucion_problemas_metaheuristicas_trabajo\results_v2\resumen_resultados_large.csv
